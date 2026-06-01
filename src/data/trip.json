@@ -22,43 +22,52 @@
       "language": { "name": "Duits", "localHello": "Hallo / Grüß Gott", "currency": "Euro" },
       "twist": null,
       "funFacts": [
-        "Karlsruhe is gebouwd als een waaier! Alle straten lopen als spaken uit op het midden, waar een groot kasteel staat.",
-        "In deze stad staat het belangrijkste rechtbankgebouw van Duitsland. Rechters beslissen hier over de allerbelangrijkste regels van het land.",
-        "Karlsruhe heeft een heel coole kunsttunnel: een museum dat half onder de grond zit! Heel bijzonder om te zien."
+        "Karlsruhe is gebouwd als een grote waaier! Alle straatjes komen samen bij één kasteel in het midden. Kijk maar eens op de kaart!",
+        "Midden in de stad staat een echte piramide van rode steen. Niet in Egypte, maar gewoon op het marktplein!",
+        "Karlsruhe heeft ook een grote dierentuin met olifanten, ijsberen en pinguïns. Even uit de camper en kijken maar!"
       ],
       "phrases": [
         { "nl": "Hallo", "local": "Hallo", "say": "ha-loo" },
         { "nl": "Dank je wel", "local": "Danke", "say": "dang-kuh" },
-        { "nl": "Alsjeblieft", "local": "Bitte", "say": "bit-tuh" },
-        { "nl": "Ja / Nee", "local": "Ja / Nein", "say": "jaa / nain" },
-        { "nl": "Lekker!", "local": "Lecker!", "say": "lek-ker" }
+        { "nl": "Een ijsje", "local": "Ein Eis", "say": "ain ais" },
+        { "nl": "Een kasteel", "local": "Ein Schloss", "say": "ain sjlos" },
+        { "nl": "Tot ziens!", "local": "Tschüss!", "say": "tsjus" }
       ],
       "highlights": [
-        { "emoji": "🏰", "title": "Kasteel van Karlsruhe", "blurb": "Een prachtig kasteel midden in een grote tuin. Alle straten van de stad lopen er naartoe!" },
-        { "emoji": "🚃", "title": "De tram door de stad", "blurb": "In Karlsruhe rijden trams door de hele stad én het platteland eromheen. Rij maar eens mee!" }
+        { "emoji": "🏰", "title": "Het kasteel", "blurb": "Een groot wit kasteel met een hoge toren. Klim naar boven en kijk uit over de hele waaierstad!" },
+        { "emoji": "🐘", "title": "De dierentuin", "blurb": "Olifanten, ijsberen en pinguïns, midden in een mooie tuin vol vijvers." },
+        { "emoji": "🔺", "title": "De rode piramide", "blurb": "Een echte stenen piramide op het marktplein. Hoe komt die daar nou?" }
       ],
       "spotChallenge": [
-        "Zoek een straat die recht naar het kasteel loopt 🏰",
-        "Spot een tram in de stad 🚃",
+        "Zoek een straatje dat recht naar het kasteel wijst 🏰",
+        "Vind de rode piramide op het plein 🔺",
         "Tel hoeveel torens het kasteel heeft 🔢"
       ],
       "quiz": [],
-      "surprise": "Karlsruhe is pas 300 jaar oud — een baby vergeleken met steden als Trier! De stad werd gebouwd door een markgraaf die droomde van een perfecte ronde stad.",
+      "surprise": "De rode piramide op het plein is eigenlijk een graf! Eronder ligt de man die de stad lang geleden heeft bedacht.",
       "passportQuiz": [
         {
-          "q": "Hoe zijn de straten van Karlsruhe aangelegd?",
+          "q": "Hoe zien de straatjes van Karlsruhe eruit van bovenaf?",
           "options": [
-            { "label": "Als een waaier naar het kasteel", "correct": true },
-            { "label": "In een rechthoek", "correct": false },
-            { "label": "In een grote cirkel", "correct": false }
+            { "label": "Als een grote waaier", "correct": true },
+            { "label": "Als een doolhof", "correct": false },
+            { "label": "Als een grote ster", "correct": false }
           ]
         },
         {
-          "q": "In welk land ligt Karlsruhe?",
+          "q": "Wat staat er midden op het marktplein?",
           "options": [
-            { "label": "Duitsland", "correct": true },
-            { "label": "Zwitserland", "correct": false },
-            { "label": "Oostenrijk", "correct": false }
+            { "label": "Een rode piramide", "correct": true },
+            { "label": "Een fontein", "correct": false },
+            { "label": "Een molen", "correct": false }
+          ]
+        },
+        {
+          "q": "Welke dieren kun je in de dierentuin zien?",
+          "options": [
+            { "label": "IJsberen en olifanten", "correct": true },
+            { "label": "Dino's", "correct": false },
+            { "label": "Eenhoorns", "correct": false }
           ]
         }
       ]
@@ -73,21 +82,55 @@
       "lat": 47.73,
       "lng": 9.41,
       "nights": 2,
-      "language": null,
+      "language": { "name": "Duits", "localHello": "Hallo / Grüß Gott", "currency": "Euro" },
       "twist": null,
-      "funFacts": [],
-      "phrases": [],
-      "highlights": [],
-      "spotChallenge": [],
+      "funFacts": [
+        "De Bodensee is zó groot dat er drie landen omheen liggen: Duitsland, Oostenrijk en Zwitserland. Ze delen samen één grote plas water!",
+        "Het water is zo schoon dat heel veel mensen het thuis gewoon uit de kraan drinken. Best gek: drinken uit een meer!",
+        "Je kunt met een boot van het ene land naar het andere varen. Zo ben je in één dagje in drie landen tegelijk!"
+      ],
+      "phrases": [
+        { "nl": "Goedemorgen", "local": "Guten Morgen", "say": "goe-ten mor-gen" },
+        { "nl": "Een boot", "local": "Ein Boot", "say": "ain boot" },
+        { "nl": "Water", "local": "Wasser", "say": "vas-ser" },
+        { "nl": "Een appel", "local": "Ein Apfel", "say": "ain ap-fel" },
+        { "nl": "Lekker!", "local": "Lecker!", "say": "lek-ker" }
+      ],
+      "highlights": [
+        { "emoji": "🚢", "title": "Met de boot over het meer", "blurb": "Vaar over het grote meer. Aan de overkant ligt al een ander land!" },
+        { "emoji": "🏊", "title": "Zwemmen aan de kant", "blurb": "Het water is heerlijk helder. Kijk eens hoe ver je naar de bodem kunt kijken!" },
+        { "emoji": "🍎", "title": "Fruit langs de weg", "blurb": "Hier groeien heel veel appels en peren. Je ziet ze zo aan de bomen hangen." }
+      ],
+      "spotChallenge": [
+        "Zoek een boot op het meer 🚢",
+        "Kijk of je het andere land aan de overkant kunt zien 🔭",
+        "Vind een appel- of perenboom langs de weg 🍎"
+      ],
       "quiz": [],
-      "surprise": null,
+      "surprise": "De Bodensee is zó diep dat er een hoog flatgebouw helemaal in zou passen, met de bovenste verdieping nog onder water!",
       "passportQuiz": [
         {
-          "q": "In welk land ligt de Bodensee?",
+          "q": "Hoeveel landen liggen er rond de Bodensee?",
           "options": [
-            { "label": "Duitsland", "correct": true },
-            { "label": "Italië", "correct": false },
-            { "label": "Spanje", "correct": false }
+            { "label": "Drie", "correct": true },
+            { "label": "Twee", "correct": false },
+            { "label": "Tien", "correct": false }
+          ]
+        },
+        {
+          "q": "Wat doen de mensen met het schone water van de Bodensee?",
+          "options": [
+            { "label": "Ze drinken het", "correct": true },
+            { "label": "Ze maken er zout van", "correct": false },
+            { "label": "Ze maken er verf van", "correct": false }
+          ]
+        },
+        {
+          "q": "Hoe ga je op het meer van het ene land naar het andere?",
+          "options": [
+            { "label": "Met een boot", "correct": true },
+            { "label": "Met een vliegtuig", "correct": false },
+            { "label": "Met de fiets", "correct": false }
           ]
         }
       ]
@@ -105,44 +148,52 @@
       "language": { "name": "Duits", "localHello": "Hallo / Grüß Gott", "currency": "Euro" },
       "twist": null,
       "funFacts": [
-        "De Zugspitze is de allerhoogste berg van Duitsland. Hij is bijna 3000 meter hoog!",
-        "Boven op de berg ligt zelfs in de zomer sneeuw. Beneden is het warm en bovenop kun je sneeuwballen gooien!",
-        "Je gaat met een kabelbaan naar de top. Die hangt aan een dikke kabel, hoog boven de bomen."
+        "De Zugspitze is de hoogste berg van heel Duitsland. Hij is bijna 3000 meter hoog — zó hoog kun je bijna niet kijken!",
+        "Helemaal bovenop ligt sneeuw, zelfs in de zomer. Beneden draag je een T-shirt, en boven gooi je sneeuwballen!",
+        "Je gaat met een kabelbaan naar de top. Dat is een wagentje aan een dikke kabel, hoog boven de bomen. Kriebels in je buik!"
       ],
       "phrases": [
-        { "nl": "Hallo", "local": "Hallo", "say": "ha-loo" },
-        { "nl": "Dank je wel", "local": "Danke", "say": "dang-kuh" },
-        { "nl": "Alsjeblieft", "local": "Bitte", "say": "bit-tuh" },
-        { "nl": "Ja / Nee", "local": "Ja / Nein", "say": "jaa / nain" },
-        { "nl": "Een ijsje", "local": "Ein Eis", "say": "ain ais" }
+        { "nl": "Een berg", "local": "Ein Berg", "say": "ain berg" },
+        { "nl": "Sneeuw", "local": "Schnee", "say": "sjnee" },
+        { "nl": "Koud", "local": "Kalt", "say": "kalt" },
+        { "nl": "Hoog", "local": "Hoch", "say": "hoogh" },
+        { "nl": "Geweldig!", "local": "Toll!", "say": "tol" }
       ],
       "highlights": [
-        { "emoji": "🚠", "title": "Met de kabelbaan naar de top", "blurb": "Hoog de lucht in tot bijna 3000 meter. Je oren gaan vast 'ploppen'!" },
-        { "emoji": "🏊", "title": "Pootjebaden in de Eibsee", "blurb": "Een meer met helder turquoise water aan de voet van de berg." },
-        { "emoji": "🥾", "title": "Wandeling rond de Eibsee", "blurb": "Een vlak rondje langs het water, met mooie plekjes om te spelen." }
+        { "emoji": "🚠", "title": "Met de kabelbaan naar boven", "blurb": "Hoog de lucht in, tot bijna 3000 meter. Je oren gaan vast 'ploppen'!" },
+        { "emoji": "❄️", "title": "Sneeuw in de zomer", "blurb": "Bovenop ligt sneeuw, ook als het beneden warm is. Pak een handschoen mee!" },
+        { "emoji": "🏊", "title": "Spelen bij de Eibsee", "blurb": "Een meer met helderblauw water onder aan de berg. Lekker pootjebaden!" }
       ],
       "spotChallenge": [
         "Zoek sneeuw, ook al is het zomer ❄️",
         "Voel je oren 'ploppen' in de kabelbaan 👂",
-        "Tel hoeveel bootjes er op de Eibsee liggen 🚣"
+        "Zoek een bergtop die hoger is dan de wolken ☁️"
       ],
       "quiz": [],
-      "surprise": "Op een heldere dag zie je vanaf de top wel vier landen tegelijk: Duitsland, Oostenrijk, Italië én Zwitserland!",
+      "surprise": "Als de lucht heel helder is, zie je vanaf de top wel vier landen tegelijk: Duitsland, Oostenrijk, Italië én Zwitserland!",
       "passportQuiz": [
         {
           "q": "Wat is de Zugspitze?",
           "options": [
             { "label": "De hoogste berg van Duitsland", "correct": true },
             { "label": "Een groot meer", "correct": false },
-            { "label": "Een bekende stad", "correct": false }
+            { "label": "Een oude stad", "correct": false }
           ]
         },
         {
-          "q": "Hoe ga je naar de top van de Zugspitze?",
+          "q": "Wat ligt er in de zomer boven op de top?",
+          "options": [
+            { "label": "Sneeuw", "correct": true },
+            { "label": "Zand", "correct": false },
+            { "label": "Bloemen", "correct": false }
+          ]
+        },
+        {
+          "q": "Hoe kom je boven op de Zugspitze?",
           "options": [
             { "label": "Met de kabelbaan", "correct": true },
-            { "label": "Met de bus", "correct": false },
-            { "label": "Met de boot", "correct": false }
+            { "label": "Met de boot", "correct": false },
+            { "label": "Met de fiets", "correct": false }
           ]
         }
       ]
@@ -157,21 +208,55 @@
       "lat": 47.68,
       "lng": 11.57,
       "nights": 2,
-      "language": null,
+      "language": { "name": "Duits", "localHello": "Hallo / Grüß Gott", "currency": "Euro" },
       "twist": null,
-      "funFacts": [],
-      "phrases": [],
-      "highlights": [],
-      "spotChallenge": [],
+      "funFacts": [
+        "Door Lenggries stroomt een rivier, de Isar. Het water is ijskoud en mooi blauwgroen, want het komt zó van de besneeuwde bergen!",
+        "Overal om het dorp staan hoge bergen. In de zomer zijn ze groen en zitten ze vol bloemen.",
+        "De koeien hier dragen een bel om hun nek. Zo hoor je ze al van ver: kling-klang door het dal!"
+      ],
+      "phrases": [
+        { "nl": "Een koe", "local": "Eine Kuh", "say": "ai-nuh koe" },
+        { "nl": "Een rivier", "local": "Ein Fluss", "say": "ain floes" },
+        { "nl": "Een brug", "local": "Eine Brücke", "say": "ai-nuh bruk-kuh" },
+        { "nl": "Ja / Nee", "local": "Ja / Nein", "say": "jaa / nain" },
+        { "nl": "Alsjeblieft", "local": "Bitte", "say": "bit-tuh" }
+      ],
+      "highlights": [
+        { "emoji": "🌊", "title": "Spelen bij de Isar", "blurb": "Een rivier met fris blauwgroen water. Kijk hoe snel het langs de stenen stroomt!" },
+        { "emoji": "🚡", "title": "Met de gondel omhoog", "blurb": "In een zweefwagentje hoog boven het dorp. Dan zie je het hele dal liggen." },
+        { "emoji": "🐄", "title": "Koeien met bellen", "blurb": "Overal koeien met een bel om hun nek. Hoor je ze al kling-klangen?" }
+      ],
+      "spotChallenge": [
+        "Zoek een koe met een bel om zijn nek 🐄",
+        "Tel hoeveel bergtoppen je kunt zien 🏔️",
+        "Vind een brug over de rivier 🌉"
+      ],
       "quiz": [],
-      "surprise": null,
+      "surprise": "Het ijskoude water van de Isar komt rechtstreeks van smeltende sneeuw, hoog tussen de bergtoppen!",
       "passportQuiz": [
         {
-          "q": "In welk land is Lenggries?",
+          "q": "Hoe is het water van de rivier de Isar?",
           "options": [
-            { "label": "Duitsland", "correct": true },
-            { "label": "Oostenrijk", "correct": false },
-            { "label": "Italië", "correct": false }
+            { "label": "IJskoud en blauwgroen", "correct": true },
+            { "label": "Warm en bruin", "correct": false },
+            { "label": "Zout zoals de zee", "correct": false }
+          ]
+        },
+        {
+          "q": "Waarom dragen de koeien hier een bel?",
+          "options": [
+            { "label": "Zodat je ze van ver hoort", "correct": true },
+            { "label": "Alleen voor de sier", "correct": false },
+            { "label": "Om ermee te slapen", "correct": false }
+          ]
+        },
+        {
+          "q": "Waar komt het koude water van de Isar vandaan?",
+          "options": [
+            { "label": "Van sneeuw in de bergen", "correct": true },
+            { "label": "Uit de zee", "correct": false },
+            { "label": "Uit de kraan", "correct": false }
           ]
         }
       ]
@@ -186,21 +271,55 @@
       "lat": 47.76,
       "lng": 12.76,
       "nights": 2,
-      "language": null,
+      "language": { "name": "Duits", "localHello": "Hallo / Grüß Gott", "currency": "Euro" },
       "twist": null,
-      "funFacts": [],
-      "phrases": [],
-      "highlights": [],
-      "spotChallenge": [],
+      "funFacts": [
+        "Inzell is een rustig bergdorpje. In de winter komen er schaatsers, want er is een grote ijsbaan waar zelfs kampioenen rijden!",
+        "Vlak bij het dorp ligt een klein bergmeertje. Het water is zó stil dat je de bergen erin kunt zien, net als in een spiegel.",
+        "In de zomer kun je er pootjebaden en vlinders zoeken in de weiden vol bloemen. Brrr, het water is lekker fris!"
+      ],
+      "phrases": [
+        { "nl": "Een vlinder", "local": "Ein Schmetterling", "say": "ain sjmet-ter-ling" },
+        { "nl": "Melk", "local": "Milch", "say": "milg" },
+        { "nl": "Warme chocomel", "local": "Heiße Schokolade", "say": "hai-suh sjo-koh-laa-duh" },
+        { "nl": "Mooi", "local": "Schön", "say": "sjoon" },
+        { "nl": "Tot morgen", "local": "Bis morgen", "say": "bis mor-gen" }
+      ],
+      "highlights": [
+        { "emoji": "⛸️", "title": "De grote ijsbaan", "blurb": "Een enorme hal waar in de winter superhard wordt geschaatst. Ook in de zomer mooi om te zien!" },
+        { "emoji": "💦", "title": "Het spiegelmeertje", "blurb": "Een klein bergmeer dat zó stil ligt dat de bergen er als in een spiegel in staan." },
+        { "emoji": "🦋", "title": "Vlinders in de wei", "blurb": "Wandel langs weiden vol bloemen en zoek de allermooiste vlinder." }
+      ],
+      "spotChallenge": [
+        "Zoek een vlinder in de bloemenweide 🦋",
+        "Vind een bergbeekje dat naar het meer stroomt 💧",
+        "Luister of je in de verte een koeienbel hoort 🔔"
+      ],
       "quiz": [],
-      "surprise": null,
+      "surprise": "De ijsbaan van Inzell is een van de snelste ter wereld! De lucht er is zo koud en droog dat schaatsers er supersnel gaan.",
       "passportQuiz": [
         {
-          "q": "In welk land is Inzell?",
+          "q": "Waar is Inzell in de winter bekend om?",
           "options": [
-            { "label": "Duitsland", "correct": true },
-            { "label": "Zwitserland", "correct": false },
-            { "label": "Nederland", "correct": false }
+            { "label": "Schaatsen", "correct": true },
+            { "label": "Surfen", "correct": false },
+            { "label": "Zwemmen", "correct": false }
+          ]
+        },
+        {
+          "q": "Hoe ligt het bergmeertje er meestal bij?",
+          "options": [
+            { "label": "Heel stil, als een spiegel", "correct": true },
+            { "label": "Vol grote golven", "correct": false },
+            { "label": "Bevroren, ook in de zomer", "correct": false }
+          ]
+        },
+        {
+          "q": "Wat fladdert er rond in de bloemenweide?",
+          "options": [
+            { "label": "Vlinders", "correct": true },
+            { "label": "Pinguïns", "correct": false },
+            { "label": "Vissen", "correct": false }
           ]
         }
       ]
@@ -215,21 +334,55 @@
       "lat": 47.00,
       "lng": 12.63,
       "nights": 2,
-      "language": null,
+      "language": { "name": "Duits", "localHello": "Servus!", "currency": "Euro" },
       "twist": null,
-      "funFacts": [],
-      "phrases": [],
-      "highlights": [],
-      "spotChallenge": [],
+      "funFacts": [
+        "Bij Kals staat de Grossglockner, de hoogste berg van heel Oostenrijk. Hij is bijna 3800 meter hoog. Wauw!",
+        "Op de berg ligt een gletsjer: een hele dikke laag ijs die er al duizenden jaren ligt en nooit helemaal smelt.",
+        "Tussen de rotsen leven gemzen. Dat zijn wilde berggeitjes die zó goed klimmen dat ze bijna nooit vallen!"
+      ],
+      "phrases": [
+        { "nl": "Hallo (in Oostenrijk)", "local": "Servus!", "say": "ser-vus" },
+        { "nl": "Dank je wel", "local": "Danke", "say": "dang-kuh" },
+        { "nl": "Een steen", "local": "Ein Stein", "say": "ain sjtain" },
+        { "nl": "Groot", "local": "Groß", "say": "groos" },
+        { "nl": "Tot ziens!", "local": "Auf Wiedersehen!", "say": "auf vee-der-zee-en" }
+      ],
+      "highlights": [
+        { "emoji": "🏔️", "title": "De hoogste berg", "blurb": "Zelfs vanuit het dorp zie je de witte top van de Grossglockner. De hoogste van Oostenrijk!" },
+        { "emoji": "🐐", "title": "Gemzen zoeken", "blurb": "Speur de rotsen af. Gemzen zijn wilde geitjes en heel goed in verstoppen!" },
+        { "emoji": "❄️", "title": "Het eeuwige ijs", "blurb": "Hoog op de berg ligt een dikke laag ijs die nooit smelt. Het glinstert in de zon." }
+      ],
+      "spotChallenge": [
+        "Zoek sneeuw op de bergtop, ook al is het zomer ❄️",
+        "Speur de rotsen af naar een gems 🐐",
+        "Wijs de hoogste bergtop aan die je ziet 🏔️"
+      ],
       "quiz": [],
-      "surprise": null,
+      "surprise": "De Grossglockner heeft twee toppen! De grote heet Grossglockner en zijn kleine broertje ernaast de Kleinglockner.",
       "passportQuiz": [
         {
-          "q": "In welk land is Kals am Grossglockner?",
+          "q": "Hoe heet de hoogste berg van Oostenrijk?",
           "options": [
-            { "label": "Oostenrijk", "correct": true },
-            { "label": "Duitsland", "correct": false },
-            { "label": "Italië", "correct": false }
+            { "label": "De Grossglockner", "correct": true },
+            { "label": "De Zugspitze", "correct": false },
+            { "label": "De Mont Blanc", "correct": false }
+          ]
+        },
+        {
+          "q": "Wat is een gletsjer?",
+          "options": [
+            { "label": "Een dikke laag ijs die nooit smelt", "correct": true },
+            { "label": "Een grote waterval", "correct": false },
+            { "label": "Een warme bron", "correct": false }
+          ]
+        },
+        {
+          "q": "Welk dier klimt hier op de steile rotsen?",
+          "options": [
+            { "label": "De gems", "correct": true },
+            { "label": "De dolfijn", "correct": false },
+            { "label": "De pinguïn", "correct": false }
           ]
         }
       ]
@@ -244,29 +397,55 @@
       "lat": 46.79,
       "lng": 12.03,
       "nights": 2,
-      "language": null,
+      "language": { "name": "Duits", "localHello": "Grüß Gott", "currency": "Euro" },
       "twist": "Italië, maar ze praten er Duits!",
-      "funFacts": [],
-      "phrases": [],
-      "highlights": [],
-      "spotChallenge": [],
+      "funFacts": [
+        "Verrassing! Antholz ligt in Italië, maar bijna iedereen praat hier Duits. Dat komt omdat dit stukje vroeger bij Oostenrijk hoorde.",
+        "Elk dorp heeft hier twee namen: één Italiaanse en één Duitse. Best handig — dan kies je gewoon welke je het leukst vindt!",
+        "Bij het dorp ligt een prachtig blauw bergmeer. Eromheen staan donkere dennenbomen en hoge toppen."
+      ],
+      "phrases": [
+        { "nl": "Hallo", "local": "Grüß Gott", "say": "groes got" },
+        { "nl": "Dank je wel", "local": "Danke", "say": "dang-kuh" },
+        { "nl": "Een meer", "local": "Ein See", "say": "ain zee" },
+        { "nl": "Een bos", "local": "Ein Wald", "say": "ain valt" },
+        { "nl": "Tot ziens!", "local": "Tschüss!", "say": "tsjus" }
+      ],
+      "highlights": [
+        { "emoji": "🏞️", "title": "Het blauwe bergmeer", "blurb": "Een stil meer met helderblauw water, tussen donkere dennenbomen." },
+        { "emoji": "🪧", "title": "Bordjes in twee talen", "blurb": "Hier staat alles dubbel: in het Italiaans én in het Duits. Lees ze allebei maar!" },
+        { "emoji": "🌺", "title": "Bloemenbalkons", "blurb": "Houten huisjes met balkons vol rode en roze bloemen." }
+      ],
+      "spotChallenge": [
+        "Zoek een bordje met zowel Italiaans als Duits erop 🪧",
+        "Spot het blauwe water van het bergmeer 💙",
+        "Vind een houten balkon vol bloemen 🌺"
+      ],
       "quiz": [],
-      "surprise": null,
+      "surprise": "Het dorp heeft twee namen: 'Anterselva' in het Italiaans en 'Antholz' in het Duits. Allebei goed!",
       "passportQuiz": [
         {
-          "q": "In welk land is Rasun-Anterselva?",
+          "q": "Welke taal praten de mensen hier, terwijl het in Italië ligt?",
           "options": [
-            { "label": "Italië", "correct": true },
-            { "label": "Oostenrijk", "correct": false },
-            { "label": "Duitsland", "correct": false }
+            { "label": "Duits", "correct": true },
+            { "label": "Frans", "correct": false },
+            { "label": "Spaans", "correct": false }
           ]
         },
         {
-          "q": "Welke taal spreken ze in Rasun-Anterselva?",
+          "q": "Hoeveel namen heeft elk dorp hier?",
           "options": [
-            { "label": "Duits", "correct": true },
-            { "label": "Italiaans", "correct": false },
-            { "label": "Frans", "correct": false }
+            { "label": "Twee", "correct": true },
+            { "label": "Eén", "correct": false },
+            { "label": "Vijf", "correct": false }
+          ]
+        },
+        {
+          "q": "Wat ligt er moois vlak bij het dorp?",
+          "options": [
+            { "label": "Een blauw bergmeer", "correct": true },
+            { "label": "Een grote zee", "correct": false },
+            { "label": "Een woestijn", "correct": false }
           ]
         }
       ]
@@ -281,21 +460,55 @@
       "lat": 45.81,
       "lng": 10.79,
       "nights": 3,
-      "language": null,
+      "language": { "name": "Italiaans", "localHello": "Ciao / Buongiorno", "currency": "Euro" },
       "twist": null,
-      "funFacts": [],
-      "phrases": [],
-      "highlights": [],
-      "spotChallenge": [],
+      "funFacts": [
+        "Limone ligt aan het Gardameer, het grootste meer van Italië. Het is zó groot dat je de overkant bijna niet kunt zien!",
+        "'Limone' betekent 'citroen'. Vroeger groeiden hier overal citroenbomen, hoog op trapjes tegen de berg aan.",
+        "Op het meer waait bijna altijd wind. Daarom zie je er heel veel surfers over het water glijden."
+      ],
+      "phrases": [
+        { "nl": "Hallo", "local": "Ciao", "say": "tsjauw" },
+        { "nl": "Dank je wel", "local": "Grazie", "say": "graat-sie-uh" },
+        { "nl": "Een ijsje", "local": "Un gelato", "say": "oen dzje-laa-toh" },
+        { "nl": "Een citroen", "local": "Un limone", "say": "oen lie-moo-nuh" },
+        { "nl": "Lekker!", "local": "Buono!", "say": "bwoo-noh" }
+      ],
+      "highlights": [
+        { "emoji": "🍋", "title": "De citroentuintjes", "blurb": "Kleine tuintjes vol citroenbomen, hoog tegen de berg. In de zomer hangen de gele citroenen eraan!" },
+        { "emoji": "🏄", "title": "Surfers op het meer", "blurb": "Door de wind glijden er altijd surfers over het water. Wie weet mag jij ook een keer!" },
+        { "emoji": "🌴", "title": "Palmbomen aan het water", "blurb": "Aan dit meer staan echte palmbomen. Het lijkt wel een beetje een vakantie-eiland!" }
+      ],
+      "spotChallenge": [
+        "Zoek een citroenboom 🍋",
+        "Tel hoeveel surfers je op het meer ziet 🏄",
+        "Vind een palmboom aan de kant 🌴"
+      ],
       "quiz": [],
-      "surprise": null,
+      "surprise": "Het Gardameer is zó diep dat de hoogste kerktoren van Nederland er helemaal in zou verdwijnen — en er nog ruimte over is!",
       "passportQuiz": [
         {
-          "q": "In welk land is Limone sul Garda?",
+          "q": "Wat betekent 'limone'?",
           "options": [
-            { "label": "Italië", "correct": true },
-            { "label": "Duitsland", "correct": false },
-            { "label": "Spanje", "correct": false }
+            { "label": "Citroen", "correct": true },
+            { "label": "Appel", "correct": false },
+            { "label": "Banaan", "correct": false }
+          ]
+        },
+        {
+          "q": "Waarom zie je zoveel surfers op het Gardameer?",
+          "options": [
+            { "label": "Er waait bijna altijd wind", "correct": true },
+            { "label": "Het water is heel warm", "correct": false },
+            { "label": "Het meer is heel klein", "correct": false }
+          ]
+        },
+        {
+          "q": "Welke bijzondere bomen staan er aan dit meer?",
+          "options": [
+            { "label": "Palmbomen", "correct": true },
+            { "label": "Kerstbomen", "correct": false },
+            { "label": "Eikenbomen", "correct": false }
           ]
         }
       ]
@@ -310,21 +523,55 @@
       "lat": 46.32,
       "lng": 9.40,
       "nights": 2,
-      "language": null,
+      "language": { "name": "Italiaans", "localHello": "Ciao / Buongiorno", "currency": "Euro" },
       "twist": null,
-      "funFacts": [],
-      "phrases": [],
-      "highlights": [],
-      "spotChallenge": [],
+      "funFacts": [
+        "Chiavenna is een oud stadje in Italië, tussen hoge bergen in. Vroeger liepen hier handelaars met paarden door de bergpassen.",
+        "In de rotsen zitten grotten die 'crotti' heten. Daar is het altijd lekker koel, dus bewaren mensen er kaas en wijn in.",
+        "Twee rivieren stromen door het stadje en komen vlakbij samen tot één. Twee worden er één!"
+      ],
+      "phrases": [
+        { "nl": "Goedendag", "local": "Buongiorno", "say": "bwon-dzjor-noh" },
+        { "nl": "Dank je wel", "local": "Grazie", "say": "graat-sie-uh" },
+        { "nl": "Kaas", "local": "Formaggio", "say": "for-mad-zjoh" },
+        { "nl": "Een brug", "local": "Un ponte", "say": "oen pon-tuh" },
+        { "nl": "Water", "local": "Acqua", "say": "ak-kwa" }
+      ],
+      "highlights": [
+        { "emoji": "🌉", "title": "De oude stenen brug", "blurb": "Honderden jaren oud en nog steeds stevig. Kijk omlaag naar het kolkende water!" },
+        { "emoji": "🧀", "title": "De koele grotten", "blurb": "In de crotti-grotten ligt kaas te rijpen in de koele berglucht. Ruik je het al?" },
+        { "emoji": "💧", "title": "Twee rivieren", "blurb": "Zoek de plek waar twee rivieren samenkomen en samen verder stromen." }
+      ],
+      "spotChallenge": [
+        "Zoek een oude stenen brug 🌉",
+        "Kijk of je een grot in de rotsen kunt vinden 🪨",
+        "Spot de plek waar twee rivieren samenkomen 💧"
+      ],
       "quiz": [],
-      "surprise": null,
+      "surprise": "In de crotti-grotten is het altijd ongeveer 6 graden, het hele jaar door. Een koelkast zonder stekker, helemaal vanzelf!",
       "passportQuiz": [
         {
-          "q": "In welk land is Chiavenna?",
+          "q": "Hoe heten de koele grotten in de rotsen?",
           "options": [
-            { "label": "Italië", "correct": true },
-            { "label": "Zwitserland", "correct": false },
-            { "label": "Oostenrijk", "correct": false }
+            { "label": "Crotti", "correct": true },
+            { "label": "Iglo's", "correct": false },
+            { "label": "Tunnels", "correct": false }
+          ]
+        },
+        {
+          "q": "Wat bewaren de mensen in die grotten?",
+          "options": [
+            { "label": "Kaas en wijn", "correct": true },
+            { "label": "Speelgoed", "correct": false },
+            { "label": "Auto's", "correct": false }
+          ]
+        },
+        {
+          "q": "Hoeveel rivieren komen er in het stadje samen?",
+          "options": [
+            { "label": "Twee", "correct": true },
+            { "label": "Tien", "correct": false },
+            { "label": "Geen enkele", "correct": false }
           ]
         }
       ]
@@ -339,29 +586,55 @@
       "lat": 46.97,
       "lng": 8.64,
       "nights": 2,
-      "language": null,
+      "language": { "name": "Duits", "localHello": "Grüezi!", "currency": "Zwitserse frank" },
       "twist": null,
-      "funFacts": [],
-      "phrases": [],
-      "highlights": [],
-      "spotChallenge": [],
+      "funFacts": [
+        "Morschach ligt hoog boven een groot meer in Zwitserland. Vanuit het dorp zie je het water én de bergen tegelijk.",
+        "In Zwitserland betaal je niet met euro's, maar met Zwitserse franken. De muntjes zien er heel anders uit — sparen maar!",
+        "Vlakbij rijdt de steilste kabelbaan ter wereld omhoog naar het dorpje Stoos. Het lijkt wel of je zó de lucht in gaat!"
+      ],
+      "phrases": [
+        { "nl": "Hallo (in Zwitserland)", "local": "Grüezi!", "say": "groo-et-sie" },
+        { "nl": "Geld", "local": "Franken", "say": "frang-ken" },
+        { "nl": "Dank je wel", "local": "Merci", "say": "mair-sie" },
+        { "nl": "Een belletje", "local": "Eine Glocke", "say": "ai-nuh glok-kuh" },
+        { "nl": "Tot ziens!", "local": "Tschüss!", "say": "tsjus" }
+      ],
+      "highlights": [
+        { "emoji": "🏔️", "title": "Uitkijken over het meer", "blurb": "Hoog boven het water staan en de kleine bootjes zien varen. Wat een uitzicht!" },
+        { "emoji": "🚠", "title": "De steilste kabelbaan", "blurb": "Het wagentje gaat zó steil omhoog dat je je even goed vasthoudt. Boven ligt het dorpje Stoos!" },
+        { "emoji": "🇨🇭", "title": "Betalen met franken", "blurb": "Koop iets kleins en betaal met Zwitsers geld. De muntjes zien er heel anders uit!" }
+      ],
+      "spotChallenge": [
+        "Zoek de Zwitserse vlag: een wit kruis op rood 🇨🇭",
+        "Kijk of je het meer kunt zien vanuit het dorp 🏞️",
+        "Voel hoe steil de kabelbaan omhoog gaat 🚠"
+      ],
       "quiz": [],
-      "surprise": null,
+      "surprise": "De kabelbaan naar Stoos is zo steil dat de vloer in het wagentje schuin staat. Anders zou je gewoon omvallen!",
       "passportQuiz": [
         {
-          "q": "In welk land is Morschach?",
+          "q": "Waarmee betaal je in Zwitserland?",
           "options": [
-            { "label": "Zwitserland", "correct": true },
-            { "label": "Duitsland", "correct": false },
-            { "label": "Oostenrijk", "correct": false }
+            { "label": "Met Zwitserse franken", "correct": true },
+            { "label": "Met euro's", "correct": false },
+            { "label": "Met schelpen", "correct": false }
           ]
         },
         {
-          "q": "Welk geld gebruik je in Zwitserland?",
+          "q": "Wat is er bijzonder aan de kabelbaan naar Stoos?",
           "options": [
-            { "label": "Zwitserse frank", "correct": true },
-            { "label": "Euro", "correct": false },
-            { "label": "Pond", "correct": false }
+            { "label": "Het is de steilste ter wereld", "correct": true },
+            { "label": "Het is de langzaamste ter wereld", "correct": false },
+            { "label": "Hij rijdt onder water", "correct": false }
+          ]
+        },
+        {
+          "q": "Wat zie je vanuit het dorp Morschach?",
+          "options": [
+            { "label": "Een groot meer en bergen", "correct": true },
+            { "label": "De zee met palmbomen", "correct": false },
+            { "label": "Een grote woestijn", "correct": false }
           ]
         }
       ]
@@ -376,21 +649,55 @@
       "lat": 48.08,
       "lng": 7.36,
       "nights": 2,
-      "language": null,
-      "twist": "Frankrijk, maar het ziet eruit als een sprookjesstad!",
-      "funFacts": [],
-      "phrases": [],
-      "highlights": [],
-      "spotChallenge": [],
+      "language": { "name": "Frans", "localHello": "Bonjour!", "currency": "Euro" },
+      "twist": "Frankrijk, maar het lijkt wel een sprookjesstad!",
+      "funFacts": [
+        "Colmar ligt in Frankrijk, maar de huisjes lijken zó uit een sprookje gestapt: scheef, kleurig en vol bloemen.",
+        "Een stukje van de stad ligt vlak aan het water. Smalle huisjes staan met hun voetjes in een grachtje — ze noemen het 'Klein Venetië'.",
+        "Op veel daken in deze streek wonen ooievaars. Ze bouwen er enorme nesten van takken, hoog boven de straat!"
+      ],
+      "phrases": [
+        { "nl": "Hallo", "local": "Bonjour", "say": "bon-zjoer" },
+        { "nl": "Dank je wel", "local": "Merci", "say": "mair-sie" },
+        { "nl": "Alsjeblieft", "local": "S'il vous plaît", "say": "siel voe pleh" },
+        { "nl": "Een ijsje", "local": "Une glace", "say": "uun glas" },
+        { "nl": "Lekker!", "local": "Délicieux!", "say": "deh-lie-sjuh" }
+      ],
+      "highlights": [
+        { "emoji": "🏠", "title": "De sprookjeshuisjes", "blurb": "Scheve, kleurige huisjes vol bloemen. Net of je in een prentenboek loopt!" },
+        { "emoji": "🚣", "title": "Klein Venetië", "blurb": "Huisjes vlak aan een smal grachtje. Je kunt er met een bootje onderdoor varen." },
+        { "emoji": "🐦", "title": "Ooievaarsnesten", "blurb": "Zoek op de daken de grote takkennesten. Misschien staat er een ooievaar in!" }
+      ],
+      "spotChallenge": [
+        "Tel hoeveel kleuren de huisjes in één straatje hebben 🌈",
+        "Zoek een ooievaarsnest op een dak 🐦",
+        "Vind een bloembak onder een raam 🌸"
+      ],
       "quiz": [],
-      "surprise": null,
+      "surprise": "De man die het grote Vrijheidsbeeld in New York maakte, is hier in Colmar geboren! In de stad staat zelfs een mini-versie van het beeld.",
       "passportQuiz": [
         {
-          "q": "In welk land is Colmar?",
+          "q": "Waar lijken de huisjes in Colmar op?",
           "options": [
-            { "label": "Frankrijk", "correct": true },
-            { "label": "Duitsland", "correct": false },
-            { "label": "België", "correct": false }
+            { "label": "Op sprookjeshuisjes", "correct": true },
+            { "label": "Op wolkenkrabbers", "correct": false },
+            { "label": "Op iglo's", "correct": false }
+          ]
+        },
+        {
+          "q": "Hoe heet het deel van de stad dat aan het water ligt?",
+          "options": [
+            { "label": "Klein Venetië", "correct": true },
+            { "label": "Klein Parijs", "correct": false },
+            { "label": "Klein Londen", "correct": false }
+          ]
+        },
+        {
+          "q": "Welke vogels bouwen hier nesten op de daken?",
+          "options": [
+            { "label": "Ooievaars", "correct": true },
+            { "label": "Pinguïns", "correct": false },
+            { "label": "Pauwen", "correct": false }
           ]
         }
       ]
@@ -405,21 +712,55 @@
       "lat": 49.75,
       "lng": 6.64,
       "nights": 2,
-      "language": null,
+      "language": { "name": "Duits", "localHello": "Hallo / Grüß Gott", "currency": "Euro" },
       "twist": null,
-      "funFacts": [],
-      "phrases": [],
-      "highlights": [],
-      "spotChallenge": [],
+      "funFacts": [
+        "Trier is de oudste stad van Duitsland. Hij is al meer dan 2000 jaar oud — gebouwd door de Romeinen, heel lang geleden!",
+        "Midden in de stad staat de Porta Nigra, een reuzenpoort van steen. Dat betekent 'zwarte poort', want de stenen zijn in al die jaren donker geworden.",
+        "Onder de stad liggen nog oude Romeinse badhuizen. De Romeinen gingen daar in bad, net zoals jij naar het zwembad gaat!"
+      ],
+      "phrases": [
+        { "nl": "Hallo", "local": "Hallo", "say": "ha-loo" },
+        { "nl": "Hoe oud is dit?", "local": "Wie alt ist das?", "say": "vie alt ist das" },
+        { "nl": "Een poort", "local": "Ein Tor", "say": "ain toor" },
+        { "nl": "Oud", "local": "Alt", "say": "alt" },
+        { "nl": "Tot ziens!", "local": "Tschüss!", "say": "tsjus" }
+      ],
+      "highlights": [
+        { "emoji": "🏛️", "title": "De zwarte poort", "blurb": "Een reuzenpoort van 2000 jaar oud. Loop er gewoon doorheen, net als de Romeinen vroeger!" },
+        { "emoji": "🏟️", "title": "Het Romeinse stadion", "blurb": "Een oud stadion waar vroeger spelletjes en wedstrijden waren. Ga maar op de tribune zitten!" },
+        { "emoji": "🌊", "title": "De rivier de Moezel", "blurb": "Een rustige rivier door de stad, met groene heuvels vol druiven eromheen." }
+      ],
+      "spotChallenge": [
+        "Raak een Romeinse steen van 2000 jaar oud aan 🏛️",
+        "Loop door de grote zwarte poort 🚪",
+        "Spot de rivier de Moezel 🌊"
+      ],
       "quiz": [],
-      "surprise": null,
+      "surprise": "De Romeinen hadden hier al verwarming ónder de vloer, zodat hun voeten lekker warm bleven. Slim bedacht, 2000 jaar geleden!",
       "passportQuiz": [
         {
-          "q": "In welk land is Trier?",
+          "q": "Hoe oud is Trier ongeveer?",
           "options": [
-            { "label": "Duitsland", "correct": true },
-            { "label": "Nederland", "correct": false },
-            { "label": "Luxemburg", "correct": false }
+            { "label": "Meer dan 2000 jaar", "correct": true },
+            { "label": "100 jaar", "correct": false },
+            { "label": "10 jaar", "correct": false }
+          ]
+        },
+        {
+          "q": "Wat betekent 'Porta Nigra'?",
+          "options": [
+            { "label": "Zwarte poort", "correct": true },
+            { "label": "Hoge brug", "correct": false },
+            { "label": "Grote kerk", "correct": false }
+          ]
+        },
+        {
+          "q": "Wie bouwden Trier heel lang geleden?",
+          "options": [
+            { "label": "De Romeinen", "correct": true },
+            { "label": "De Vikingen", "correct": false },
+            { "label": "De ridders", "correct": false }
           ]
         }
       ]

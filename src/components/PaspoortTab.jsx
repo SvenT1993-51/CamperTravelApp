@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react'
 import tripData from '../data/trip.json'
 import PassportStamp from './PassportStamp.jsx'
+import StopCard from './StopCard.jsx'
 
 const COUNTRY_BG = {
   DE: '#E5806B', AT: '#69B0B6', IT: '#93C18E',
@@ -250,7 +251,16 @@ export default function PaspoortTab({ visitedStopIds, stampedStops, activeStopId
     setMode('quiz')
   }
 
+  function openDetail(stop) {
+    setQuizStop(stop)
+    setMode('detail')
+  }
+
   function handlePass() {
+    if (stampedIds.includes(quizStop.id)) {
+      backToGrid()
+      return
+    }
     const today = new Date().toISOString().slice(0, 10)
     setEarnedDate(today)
     onStampEarned(quizStop.id)
@@ -261,6 +271,29 @@ export default function PaspoortTab({ visitedStopIds, stampedStops, activeStopId
     setMode('grid')
     setQuizStop(null)
     setEarnedDate(null)
+  }
+
+  if (mode === 'detail' && quizStop) {
+    const color = bg(quizStop.countryCode)
+    return (
+      <div className="h-full flex flex-col overflow-hidden">
+        <div className="flex-shrink-0 flex items-center gap-3 px-4 py-3"
+             style={{ background: color }}>
+          <button onClick={backToGrid}
+            className="min-h-[44px] px-3 py-1 rounded-lg bg-white/30 text-white font-bold text-sm active:scale-95">
+            ← Terug
+          </button>
+          <span className="flex-1" />
+          <button onClick={() => openQuiz(quizStop)}
+            className="min-h-[44px] px-4 py-1 rounded-lg bg-white/30 text-white font-bold text-sm active:scale-95">
+            🎯 Quiz opnieuw
+          </button>
+        </div>
+        <div className="flex-1 overflow-hidden">
+          <StopCard stop={quizStop} />
+        </div>
+      </div>
+    )
   }
 
   if (mode === 'quiz' && quizStop) {
@@ -295,8 +328,10 @@ export default function PaspoortTab({ visitedStopIds, stampedStops, activeStopId
               isCurrent={stop.id === activeStopId}
               stampDate={stampDate(stop.id)}
               onTap={() => {
-                if (stampState(stop) === 'stamped') return  // tapping stamped does nothing for now
-                openQuiz(stop)
+                const s = stampState(stop)
+                if (s === 'locked') return
+                if (s === 'stamped') openDetail(stop)
+                else openQuiz(stop)
               }}
             />
           ))}
