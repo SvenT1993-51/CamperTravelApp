@@ -8,13 +8,22 @@ const LS_ACTIVE  = 'ce_activeStop'
 const LS_VISITED = 'ce_visited'
 const LS_STAMPED = 'ce_stamped'
 
-const load = (key) => { try { return JSON.parse(localStorage.getItem(key) || '[]') } catch { return [] } }
+const loadArr = (key) => { try { return JSON.parse(localStorage.getItem(key) || '[]') } catch { return [] } }
+
+// stampedStops is [{id, date}]. Migrate old format (string[]) transparently.
+function loadStamped() {
+  const raw = loadArr(LS_STAMPED)
+  if (raw.length > 0 && typeof raw[0] === 'string') {
+    return raw.map(id => ({ id, date: null }))
+  }
+  return raw
+}
 
 export default function App() {
   const [activeTab,      setActiveTab]      = useState('kaart')
   const [activeStopId,   setActiveStopId]   = useState(() => localStorage.getItem(LS_ACTIVE) ?? null)
-  const [visitedStopIds, setVisitedStopIds] = useState(() => load(LS_VISITED))
-  const [stampedStopIds, setStampedStopIds] = useState(() => load(LS_STAMPED))
+  const [visitedStopIds, setVisitedStopIds] = useState(() => loadArr(LS_VISITED))
+  const [stampedStops,   setStampedStops]   = useState(loadStamped)
 
   function handleSetActive(stopId) {
     setActiveStopId(stopId)
@@ -30,9 +39,9 @@ export default function App() {
   }
 
   function handleStampEarned(stopId) {
-    setStampedStopIds(prev => {
-      if (prev.includes(stopId)) return prev
-      const next = [...prev, stopId]
+    setStampedStops(prev => {
+      if (prev.some(s => s.id === stopId)) return prev
+      const next = [...prev, { id: stopId, date: new Date().toISOString().slice(0, 10) }]
       localStorage.setItem(LS_STAMPED, JSON.stringify(next))
       return next
     })
@@ -47,7 +56,7 @@ export default function App() {
         {activeTab === 'paspoort' && (
           <PaspoortTab
             visitedStopIds={visitedStopIds}
-            stampedStopIds={stampedStopIds}
+            stampedStops={stampedStops}
             activeStopId={activeStopId}
             onStampEarned={handleStampEarned}
           />
