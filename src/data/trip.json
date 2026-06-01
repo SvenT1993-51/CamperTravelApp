@@ -1,0 +1,428 @@
+{
+  "title": "Onze Zomerreis",
+  "home": {
+    "id": "home",
+    "name": "Sint-Oedenrode",
+    "country": "Nederland",
+    "flag": "🇳🇱",
+    "lat": 51.57,
+    "lng": 5.46
+  },
+  "stops": [
+    {
+      "id": "karlsruhe",
+      "order": 1,
+      "name": "Karlsruhe",
+      "country": "Duitsland",
+      "countryCode": "DE",
+      "flag": "🇩🇪",
+      "lat": 49.01,
+      "lng": 8.40,
+      "nights": 1,
+      "language": { "name": "Duits", "localHello": "Hallo / Grüß Gott", "currency": "Euro" },
+      "twist": null,
+      "funFacts": [
+        "Karlsruhe is gebouwd als een waaier! Alle straten lopen als spaken uit op het midden, waar een groot kasteel staat.",
+        "In deze stad staat het belangrijkste rechtbankgebouw van Duitsland. Rechters beslissen hier over de allerbelangrijkste regels van het land.",
+        "Karlsruhe heeft een heel coole kunsttunnel: een museum dat half onder de grond zit! Heel bijzonder om te zien."
+      ],
+      "phrases": [
+        { "nl": "Hallo", "local": "Hallo", "say": "ha-loo" },
+        { "nl": "Dank je wel", "local": "Danke", "say": "dang-kuh" },
+        { "nl": "Alsjeblieft", "local": "Bitte", "say": "bit-tuh" },
+        { "nl": "Ja / Nee", "local": "Ja / Nein", "say": "jaa / nain" },
+        { "nl": "Lekker!", "local": "Lecker!", "say": "lek-ker" }
+      ],
+      "highlights": [
+        { "emoji": "🏰", "title": "Kasteel van Karlsruhe", "blurb": "Een prachtig kasteel midden in een grote tuin. Alle straten van de stad lopen er naartoe!" },
+        { "emoji": "🚃", "title": "De tram door de stad", "blurb": "In Karlsruhe rijden trams door de hele stad én het platteland eromheen. Rij maar eens mee!" }
+      ],
+      "spotChallenge": [
+        "Zoek een straat die recht naar het kasteel loopt 🏰",
+        "Spot een tram in de stad 🚃",
+        "Tel hoeveel torens het kasteel heeft 🔢"
+      ],
+      "quiz": [],
+      "surprise": "Karlsruhe is pas 300 jaar oud — een baby vergeleken met steden als Trier! De stad werd gebouwd door een markgraaf die droomde van een perfecte ronde stad.",
+      "passportQuiz": [
+        {
+          "q": "Hoe zijn de straten van Karlsruhe aangelegd?",
+          "options": [
+            { "label": "Als een waaier naar het kasteel", "correct": true },
+            { "label": "In een rechthoek", "correct": false },
+            { "label": "In een grote cirkel", "correct": false }
+          ]
+        },
+        {
+          "q": "In welk land ligt Karlsruhe?",
+          "options": [
+            { "label": "Duitsland", "correct": true },
+            { "label": "Zwitserland", "correct": false },
+            { "label": "Oostenrijk", "correct": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bodensee",
+      "order": 2,
+      "name": "Oberteuringen / Bodensee",
+      "country": "Duitsland",
+      "countryCode": "DE",
+      "flag": "🇩🇪",
+      "lat": 47.73,
+      "lng": 9.41,
+      "nights": 2,
+      "language": null,
+      "twist": null,
+      "funFacts": [],
+      "phrases": [],
+      "highlights": [],
+      "spotChallenge": [],
+      "quiz": [],
+      "surprise": null,
+      "passportQuiz": [
+        {
+          "q": "In welk land ligt de Bodensee?",
+          "options": [
+            { "label": "Duitsland", "correct": true },
+            { "label": "Italië", "correct": false },
+            { "label": "Spanje", "correct": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zugspitze",
+      "order": 3,
+      "name": "Zugspitze & Eibsee",
+      "country": "Duitsland",
+      "countryCode": "DE",
+      "flag": "🇩🇪",
+      "lat": 47.42,
+      "lng": 10.98,
+      "nights": 2,
+      "language": { "name": "Duits", "localHello": "Hallo / Grüß Gott", "currency": "Euro" },
+      "twist": null,
+      "funFacts": [
+        "De Zugspitze is de allerhoogste berg van Duitsland. Hij is bijna 3000 meter hoog!",
+        "Boven op de berg ligt zelfs in de zomer sneeuw. Beneden is het warm en bovenop kun je sneeuwballen gooien!",
+        "Je gaat met een kabelbaan naar de top. Die hangt aan een dikke kabel, hoog boven de bomen."
+      ],
+      "phrases": [
+        { "nl": "Hallo", "local": "Hallo", "say": "ha-loo" },
+        { "nl": "Dank je wel", "local": "Danke", "say": "dang-kuh" },
+        { "nl": "Alsjeblieft", "local": "Bitte", "say": "bit-tuh" },
+        { "nl": "Ja / Nee", "local": "Ja / Nein", "say": "jaa / nain" },
+        { "nl": "Een ijsje", "local": "Ein Eis", "say": "ain ais" }
+      ],
+      "highlights": [
+        { "emoji": "🚠", "title": "Met de kabelbaan naar de top", "blurb": "Hoog de lucht in tot bijna 3000 meter. Je oren gaan vast 'ploppen'!" },
+        { "emoji": "🏊", "title": "Pootjebaden in de Eibsee", "blurb": "Een meer met helder turquoise water aan de voet van de berg." },
+        { "emoji": "🥾", "title": "Wandeling rond de Eibsee", "blurb": "Een vlak rondje langs het water, met mooie plekjes om te spelen." }
+      ],
+      "spotChallenge": [
+        "Zoek sneeuw, ook al is het zomer ❄️",
+        "Voel je oren 'ploppen' in de kabelbaan 👂",
+        "Tel hoeveel bootjes er op de Eibsee liggen 🚣"
+      ],
+      "quiz": [],
+      "surprise": "Op een heldere dag zie je vanaf de top wel vier landen tegelijk: Duitsland, Oostenrijk, Italië én Zwitserland!",
+      "passportQuiz": [
+        {
+          "q": "Wat is de Zugspitze?",
+          "options": [
+            { "label": "De hoogste berg van Duitsland", "correct": true },
+            { "label": "Een groot meer", "correct": false },
+            { "label": "Een bekende stad", "correct": false }
+          ]
+        },
+        {
+          "q": "Hoe ga je naar de top van de Zugspitze?",
+          "options": [
+            { "label": "Met de kabelbaan", "correct": true },
+            { "label": "Met de bus", "correct": false },
+            { "label": "Met de boot", "correct": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lenggries",
+      "order": 4,
+      "name": "Lenggries",
+      "country": "Duitsland",
+      "countryCode": "DE",
+      "flag": "🇩🇪",
+      "lat": 47.68,
+      "lng": 11.57,
+      "nights": 2,
+      "language": null,
+      "twist": null,
+      "funFacts": [],
+      "phrases": [],
+      "highlights": [],
+      "spotChallenge": [],
+      "quiz": [],
+      "surprise": null,
+      "passportQuiz": [
+        {
+          "q": "In welk land is Lenggries?",
+          "options": [
+            { "label": "Duitsland", "correct": true },
+            { "label": "Oostenrijk", "correct": false },
+            { "label": "Italië", "correct": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inzell",
+      "order": 5,
+      "name": "Inzell",
+      "country": "Duitsland",
+      "countryCode": "DE",
+      "flag": "🇩🇪",
+      "lat": 47.76,
+      "lng": 12.76,
+      "nights": 2,
+      "language": null,
+      "twist": null,
+      "funFacts": [],
+      "phrases": [],
+      "highlights": [],
+      "spotChallenge": [],
+      "quiz": [],
+      "surprise": null,
+      "passportQuiz": [
+        {
+          "q": "In welk land is Inzell?",
+          "options": [
+            { "label": "Duitsland", "correct": true },
+            { "label": "Zwitserland", "correct": false },
+            { "label": "Nederland", "correct": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kals",
+      "order": 6,
+      "name": "Kals am Grossglockner",
+      "country": "Oostenrijk",
+      "countryCode": "AT",
+      "flag": "🇦🇹",
+      "lat": 47.00,
+      "lng": 12.63,
+      "nights": 2,
+      "language": null,
+      "twist": null,
+      "funFacts": [],
+      "phrases": [],
+      "highlights": [],
+      "spotChallenge": [],
+      "quiz": [],
+      "surprise": null,
+      "passportQuiz": [
+        {
+          "q": "In welk land is Kals am Grossglockner?",
+          "options": [
+            { "label": "Oostenrijk", "correct": true },
+            { "label": "Duitsland", "correct": false },
+            { "label": "Italië", "correct": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "antholz",
+      "order": 7,
+      "name": "Rasun-Anterselva",
+      "country": "Italië",
+      "countryCode": "IT",
+      "flag": "🇮🇹",
+      "lat": 46.79,
+      "lng": 12.03,
+      "nights": 2,
+      "language": null,
+      "twist": "Italië, maar ze praten er Duits!",
+      "funFacts": [],
+      "phrases": [],
+      "highlights": [],
+      "spotChallenge": [],
+      "quiz": [],
+      "surprise": null,
+      "passportQuiz": [
+        {
+          "q": "In welk land is Rasun-Anterselva?",
+          "options": [
+            { "label": "Italië", "correct": true },
+            { "label": "Oostenrijk", "correct": false },
+            { "label": "Duitsland", "correct": false }
+          ]
+        },
+        {
+          "q": "Welke taal spreken ze in Rasun-Anterselva?",
+          "options": [
+            { "label": "Duits", "correct": true },
+            { "label": "Italiaans", "correct": false },
+            { "label": "Frans", "correct": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "garda",
+      "order": 8,
+      "name": "Limone sul Garda",
+      "country": "Italië",
+      "countryCode": "IT",
+      "flag": "🇮🇹",
+      "lat": 45.81,
+      "lng": 10.79,
+      "nights": 3,
+      "language": null,
+      "twist": null,
+      "funFacts": [],
+      "phrases": [],
+      "highlights": [],
+      "spotChallenge": [],
+      "quiz": [],
+      "surprise": null,
+      "passportQuiz": [
+        {
+          "q": "In welk land is Limone sul Garda?",
+          "options": [
+            { "label": "Italië", "correct": true },
+            { "label": "Duitsland", "correct": false },
+            { "label": "Spanje", "correct": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chiavenna",
+      "order": 9,
+      "name": "Chiavenna",
+      "country": "Italië",
+      "countryCode": "IT",
+      "flag": "🇮🇹",
+      "lat": 46.32,
+      "lng": 9.40,
+      "nights": 2,
+      "language": null,
+      "twist": null,
+      "funFacts": [],
+      "phrases": [],
+      "highlights": [],
+      "spotChallenge": [],
+      "quiz": [],
+      "surprise": null,
+      "passportQuiz": [
+        {
+          "q": "In welk land is Chiavenna?",
+          "options": [
+            { "label": "Italië", "correct": true },
+            { "label": "Zwitserland", "correct": false },
+            { "label": "Oostenrijk", "correct": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "morschach",
+      "order": 10,
+      "name": "Morschach",
+      "country": "Zwitserland",
+      "countryCode": "CH",
+      "flag": "🇨🇭",
+      "lat": 46.97,
+      "lng": 8.64,
+      "nights": 2,
+      "language": null,
+      "twist": null,
+      "funFacts": [],
+      "phrases": [],
+      "highlights": [],
+      "spotChallenge": [],
+      "quiz": [],
+      "surprise": null,
+      "passportQuiz": [
+        {
+          "q": "In welk land is Morschach?",
+          "options": [
+            { "label": "Zwitserland", "correct": true },
+            { "label": "Duitsland", "correct": false },
+            { "label": "Oostenrijk", "correct": false }
+          ]
+        },
+        {
+          "q": "Welk geld gebruik je in Zwitserland?",
+          "options": [
+            { "label": "Zwitserse frank", "correct": true },
+            { "label": "Euro", "correct": false },
+            { "label": "Pond", "correct": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "colmar",
+      "order": 11,
+      "name": "Colmar",
+      "country": "Frankrijk",
+      "countryCode": "FR",
+      "flag": "🇫🇷",
+      "lat": 48.08,
+      "lng": 7.36,
+      "nights": 2,
+      "language": null,
+      "twist": "Frankrijk, maar het ziet eruit als een sprookjesstad!",
+      "funFacts": [],
+      "phrases": [],
+      "highlights": [],
+      "spotChallenge": [],
+      "quiz": [],
+      "surprise": null,
+      "passportQuiz": [
+        {
+          "q": "In welk land is Colmar?",
+          "options": [
+            { "label": "Frankrijk", "correct": true },
+            { "label": "Duitsland", "correct": false },
+            { "label": "België", "correct": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trier",
+      "order": 12,
+      "name": "Trier",
+      "country": "Duitsland",
+      "countryCode": "DE",
+      "flag": "🇩🇪",
+      "lat": 49.75,
+      "lng": 6.64,
+      "nights": 2,
+      "language": null,
+      "twist": null,
+      "funFacts": [],
+      "phrases": [],
+      "highlights": [],
+      "spotChallenge": [],
+      "quiz": [],
+      "surprise": null,
+      "passportQuiz": [
+        {
+          "q": "In welk land is Trier?",
+          "options": [
+            { "label": "Duitsland", "correct": true },
+            { "label": "Nederland", "correct": false },
+            { "label": "Luxemburg", "correct": false }
+          ]
+        }
+      ]
+    }
+  ]
+}

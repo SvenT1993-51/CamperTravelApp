@@ -1,0 +1,102 @@
+{
+  "viewBox": [
+    0,
+    0,
+    812,
+    800
+  ],
+  "projection": {
+    "type": "web-mercator",
+    "lngRange": [
+      2.5,
+      15.5
+    ],
+    "latRange": [
+      44.0,
+      52.5
+    ],
+    "width": 812.1,
+    "height": 800.0,
+    "note": "x=(merc_x(lng)-merc_x(lngMin))/(merc_x(lngMax)-merc_x(lngMin))*width ; y=(merc_y(lat)-merc_y(latMax))/(merc_y(latMin)-merc_y(latMax))*height ; merc_x(d)=radians(d); merc_y(d)=ln(tan(PI/4+radians(d)/2))"
+  },
+  "markers": [
+    {
+      "id": "home",
+      "label": "Sint-Oedenrode",
+      "x": 184.7,
+      "y": 94.9
+    },
+    {
+      "id": "karlsruhe",
+      "label": "Karlsruhe",
+      "x": 368.8,
+      "y": 345.2
+    },
+    {
+      "id": "bodensee",
+      "label": "Oberteuringen / Bodensee",
+      "x": 435.2,
+      "y": 466.4
+    },
+    {
+      "id": "zugspitze",
+      "label": "Zugspitze & Eibsee",
+      "x": 529.7,
+      "y": 490.5
+    },
+    {
+      "id": "lenggries",
+      "label": "Lenggries",
+      "x": 566.8,
+      "y": 469.6
+    },
+    {
+      "id": "inzell",
+      "label": "Inzell",
+      "x": 640.2,
+      "y": 461.7
+    },
+    {
+      "id": "kals",
+      "label": "Kals am Grossglockner",
+      "x": 633.6,
+      "y": 532.4
+    },
+    {
+      "id": "antholz",
+      "label": "Rasun-Anterselva",
+      "x": 596.1,
+      "y": 552.4
+    },
+    {
+      "id": "garda",
+      "label": "Limone sul Garda",
+      "x": 518.0,
+      "y": 640.1
+    },
+    {
+      "id": "chiavenna",
+      "label": "Chiavenna",
+      "x": 430.9,
+      "y": 594.5
+    },
+    {
+      "id": "morschach",
+      "label": "Morschach",
+      "x": 381.8,
+      "y": 534.1
+    },
+    {
+      "id": "colmar",
+      "label": "Colmar",
+      "x": 303.5,
+      "y": 432.7
+    },
+    {
+      "id": "trier",
+      "label": "Trier",
+      "x": 258.9,
+      "y": 273.0
+    }
+  ]
+}
