@@ -48,7 +48,7 @@ export default function App() {
   }
 
   return (
-    <div className="flex flex-col bg-brand-cream" style={{ width: '100vw', height: '100vh' }}>
+    <div className="flex flex-col bg-brand-cream w-full h-full">
       <main className="flex-1 overflow-hidden">
         {activeTab === 'kaart' && (
           <KaartTab activeStopId={activeStopId} onSetActive={handleSetActive} />

@@ -2,7 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, #root {
+/* html gets the real visible-viewport height; dvh shrinks when the
+   browser address bar is shown, 100vh is the fallback for old browsers.
+   body and #root inherit 100% from html so they track it automatically. */
+html {
+  height: 100vh;
+  height: 100dvh;
+}
+
+body, #root {
   width: 100%;
   height: 100%;
   margin: 0;

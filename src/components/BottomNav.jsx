@@ -8,7 +8,10 @@ const TABS = [
 
 export default function BottomNav({ activeTab, onTabChange }) {
   return (
-    <nav className="flex bg-orange-500 shadow-lg" style={{ minHeight: '72px' }}>
+    <nav
+      className="flex bg-orange-500 shadow-lg"
+      style={{ minHeight: '72px', paddingBottom: 'env(safe-area-inset-bottom)' }}
+    >
       {TABS.map(tab => {
         const isActive = tab.id === activeTab
         return (
