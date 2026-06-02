@@ -56,6 +56,7 @@
         },
         {
           "q": "Wat staat er midden op het marktplein?",
+          "image": "karlsruhe/pyramide.jpg",
           "options": [
             { "label": "Een rode piramide", "correct": true },
             { "label": "Een fontein", "correct": false },

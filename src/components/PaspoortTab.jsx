@@ -3,6 +3,14 @@ import tripData from '../data/trip.json'
 import PassportStamp from './PassportStamp.jsx'
 import StopCard from './StopCard.jsx'
 
+// Eagerly bundle every quiz image so they're available offline via the service worker.
+// Keys are like "../assets/karlsruhe/pyramid.jpg"; values have a .default URL.
+const QUIZ_IMAGES = import.meta.glob('../assets/**/*.{jpg,jpeg,png,webp,avif}', { eager: true })
+function quizImgSrc(path) {
+  if (!path) return null
+  return QUIZ_IMAGES[`../assets/${path}`]?.default ?? null
+}
+
 const COUNTRY_BG = {
   DE: '#E5806B', AT: '#69B0B6', IT: '#93C18E',
   CH: '#EF7C58', FR: '#F4C95D', NL: '#7FB99B',
@@ -162,6 +170,14 @@ function QuizScreen({ stop, questions, onPass, onBack }) {
       </div>
 
       <div className="flex-1 flex flex-col items-center justify-center px-8 gap-5">
+        {quizImgSrc(q.image) && (
+          <img
+            src={quizImgSrc(q.image)}
+            alt=""
+            className="rounded-2xl object-cover shadow-md"
+            style={{ maxHeight: '180px', maxWidth: '100%' }}
+          />
+        )}
         <p className="text-2xl font-black text-center leading-tight" style={{ color: fg(stop.countryCode) }}>
           {q.q}
         </p>
