@@ -305,17 +305,50 @@ export default function PaspoortTab({ visitedStopIds, stampedStops, activeStopId
 
   return (
     <div className="h-full flex flex-col bg-brand-cream overflow-hidden">
-      <div className="flex-shrink-0 flex items-baseline gap-3 px-6 pt-4 pb-1">
-        <h1 className="text-2xl font-black text-amber-900">🗒️ Paspoort</h1>
-        <span className="text-base font-semibold text-amber-700">{stampedCount}/{stops.length} stempels</span>
-        {visitedStopIds.length === 0 && (
-          <span className="text-sm text-amber-600 italic">— doe de quiz voor een stempel!</span>
-        )}
-      </div>
+      {/* ── Progress header ──────────────────────────────────────── */}
+      <div className="flex-shrink-0 px-6 pt-4 pb-3">
 
-      <div className="flex-shrink-0 mx-6 mb-3 h-3 rounded-full bg-amber-100 overflow-hidden">
-        <div className="h-full rounded-full bg-orange-400 transition-all duration-500"
-             style={{ width: `${(stampedCount / stops.length) * 100}%` }} />
+        {/* Title + cheer */}
+        <div className="flex items-center gap-3 mb-2">
+          <h1 className="text-2xl font-black text-amber-900">🗒️ Paspoort</h1>
+          <span className="text-sm font-bold text-amber-600">
+            {stampedCount === stops.length
+              ? '🏆 Helemaal vol!'
+              : stampedCount === 0 && visitedStopIds.length === 0
+                ? '📍 Ga naar de kaart om te beginnen!'
+                : stampedCount === 0
+                  ? '✨ Doe een quiz voor je eerste stempel!'
+                  : `🚀 Nog ${stops.length - stampedCount} stempels te gaan!`}
+          </span>
+        </div>
+
+        {/* Big written-out count + gradient bar */}
+        <div className="flex items-center gap-3 mb-2">
+          <div className="flex items-baseline gap-1.5 min-w-max">
+            <span className="text-4xl font-black text-orange-500 leading-none">{stampedCount}</span>
+            <span className="text-base font-bold text-amber-700">van de {stops.length} stempels</span>
+          </div>
+          <div className="flex-1 h-5 rounded-full bg-amber-100 overflow-hidden">
+            <div
+              className="h-full rounded-full transition-all duration-500"
+              style={{
+                width: `${(stampedCount / stops.length) * 100}%`,
+                background: 'linear-gradient(90deg, #fb923c 0%, #fbbf24 100%)',
+              }}
+            />
+          </div>
+        </div>
+
+        {/* One dot per stop, coloured with country colour when stamped */}
+        <div className="flex gap-1">
+          {stops.map(stop => (
+            <div
+              key={stop.id}
+              className="flex-1 h-2.5 rounded-full transition-all duration-300"
+              style={{ background: stampedIds.includes(stop.id) ? bg(stop.countryCode) : '#fde68a' }}
+            />
+          ))}
+        </div>
       </div>
 
       <div className="flex-1 overflow-y-auto px-5 pb-4">
