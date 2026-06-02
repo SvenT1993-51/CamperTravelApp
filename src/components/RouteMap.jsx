@@ -307,15 +307,24 @@ export default function RouteMap({ home, stops, activeStopId, onSetActive }) {
                   <circle cx={homeMarker.x} cy={homeMarker.y} r="17"
                     fill="#16a34a" stroke="white" strokeWidth="2.5" filter="url(#mkSh)" />
                   <text x={homeMarker.x} y={homeMarker.y + 6} textAnchor="middle" fontSize="17">🏠</text>
-                  <foreignObject x={homeMarker.x - 80} y={homeMarker.y - 36} width="160" height="18" overflow="visible">
-                    <div style={{
-                      fontSize: '10px', fontWeight: 800,
-                      color: '#14532d', textAlign: 'center', whiteSpace: 'nowrap',
-                      textShadow: '0 0 4px white, 0 0 4px white, 0 0 4px white',
-                    }}>
-                      {home.flag} {home.name}
+                  <foreignObject x={homeMarker.x - 80} y={homeMarker.y - 52} width="160" height="24" overflow="visible"
+                                 style={{ pointerEvents: 'none' }}>
+                    <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+                      <div style={{
+                        display: 'inline-flex', alignItems: 'center', gap: '3px',
+                        background: 'white', border: '2px solid #16a34a', borderRadius: '8px',
+                        padding: '2px 8px', fontSize: '12px', fontWeight: 800, color: '#14532d',
+                        whiteSpace: 'nowrap', boxShadow: '0 2px 5px rgba(0,0,0,0.22)',
+                      }}>
+                        {home.flag} {home.name}
+                      </div>
                     </div>
                   </foreignObject>
+                  <polygon
+                    points={`${homeMarker.x - 5},${homeMarker.y - 28} ${homeMarker.x + 5},${homeMarker.y - 28} ${homeMarker.x},${homeMarker.y - 19}`}
+                    fill="white" stroke="#16a34a" strokeWidth="1.5" strokeLinejoin="round"
+                    style={{ pointerEvents: 'none' }}
+                  />
                   {isActive && (
                     <text x={homeMarker.x + 24} y={homeMarker.y - 10} fontSize="20">🚐</text>
                   )}
@@ -341,16 +350,29 @@ export default function RouteMap({ home, stops, activeStopId, onSetActive }) {
                   <text x={m.x} y={m.y + 4} textAnchor="middle" fontSize="11" fontWeight="900" fill="white">
                     {stop.order}
                   </text>
-                  <foreignObject x={m.x - 80} y={m.y - r - 22} width="160" height="18" overflow="visible">
-                    <div style={{
-                      fontSize: '10px', fontWeight: 800,
-                      color: isActive ? '#92400e' : '#1e3a8a',
-                      textAlign: 'center', whiteSpace: 'nowrap',
-                      textShadow: '0 0 4px white, 0 0 4px white, 0 0 4px white',
-                    }}>
-                      {stop.flag} {mapLabel(stop.name)}
+                  <foreignObject x={m.x - 80} y={m.y - r - 38} width="160" height="24" overflow="visible"
+                                 style={{ pointerEvents: 'none' }}>
+                    <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+                      <div style={{
+                        display: 'inline-flex', alignItems: 'center', gap: '3px',
+                        background: 'white',
+                        border: `2px solid ${isActive ? '#f97316' : '#2563eb'}`,
+                        borderRadius: '8px',
+                        padding: '2px 8px', fontSize: '12px', fontWeight: 800,
+                        color: isActive ? '#7c2d12' : '#1e3a8a',
+                        whiteSpace: 'nowrap', boxShadow: '0 2px 5px rgba(0,0,0,0.22)',
+                      }}>
+                        {stop.flag} {mapLabel(stop.name)}
+                      </div>
                     </div>
                   </foreignObject>
+                  <polygon
+                    points={`${m.x - 5},${m.y - r - 14} ${m.x + 5},${m.y - r - 14} ${m.x},${m.y - r - 5}`}
+                    fill="white"
+                    stroke={isActive ? '#f97316' : '#2563eb'}
+                    strokeWidth="1.5" strokeLinejoin="round"
+                    style={{ pointerEvents: 'none' }}
+                  />
                   {isActive && (
                     <text x={m.x + 24} y={m.y - 12} fontSize="20">🚐</text>
                   )}
