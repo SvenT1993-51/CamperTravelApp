@@ -284,11 +284,16 @@ export default function RouteMap({ home, stops, activeStopId, onSetActive }) {
               </text>
             ))}
 
-            {/* Route — dark shadow + dashed orange line */}
-            <path d={routePath} fill="none" stroke="#a83210" strokeWidth="6"
-              strokeLinecap="round" strokeLinejoin="round" opacity="0.28" />
-            <path d={routePath} fill="none" stroke="#ff6b35" strokeWidth="3.5"
-              strokeDasharray="12 6" strokeLinecap="round" strokeLinejoin="round" opacity="0.92" />
+            {/* Route — 3 layers so the line pops against any country colour */}
+            {/* Layer 1: wide white halo prevents merging with map fills */}
+            <path d={routePath} fill="none" stroke="white" strokeWidth="11"
+              strokeLinecap="round" strokeLinejoin="round" opacity="0.92" />
+            {/* Layer 2: solid orange road */}
+            <path d={routePath} fill="none" stroke="#f97316" strokeWidth="7"
+              strokeLinecap="round" strokeLinejoin="round" />
+            {/* Layer 3: white centre dashes — road-marking style, fun for kids */}
+            <path d={routePath} fill="none" stroke="white" strokeWidth="2.5"
+              strokeDasharray="16 8" strokeLinecap="round" strokeLinejoin="round" opacity="0.85" />
 
             {/* Home marker */}
             {homeMarker && (() => {

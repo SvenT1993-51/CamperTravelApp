@@ -43,85 +43,94 @@ function StampCard({ stop, state, isCurrent, stampDate, onTap }) {
   const isAvailable = state === 'available'
   const isStamped   = state === 'stamped'
 
+  // Badge rendered outside both card variants so overflow:hidden can't clip it
+  const currentBadge = isCurrent && !isLocked ? (
+    <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1 bg-orange-500 text-white font-black px-3 py-1 rounded-full shadow-lg whitespace-nowrap pointer-events-none"
+         style={{ fontSize: '11px' }}>
+      🚐 Wij zijn hier!
+    </div>
+  ) : null
+
   if (isStamped) {
     return (
-      <button
-        onClick={onTap}
-        className="relative flex items-center justify-center active:scale-95 transition-transform rounded-xl"
-        style={{
-          background: 'white',
-          boxShadow: `0 0 0 2px ${color}50, 0 4px 14px rgba(0,0,0,0.12)`,
-          overflow: 'visible',
-          minHeight: '160px',
-        }}
-      >
-        {/* Order badge */}
-        <div
-          className="absolute top-1.5 left-1.5 z-10 w-6 h-6 rounded-full flex items-center justify-center text-xs font-black text-white"
-          style={{ background: color }}
+      <div className="relative">
+        {currentBadge}
+        <button
+          onClick={onTap}
+          className="relative w-full flex items-center justify-center active:scale-95 transition-transform rounded-xl"
+          style={{
+            background: 'white',
+            boxShadow: isCurrent
+              ? `0 0 0 3px #f97316, 0 4px 20px rgba(249,115,22,0.45)`
+              : `0 0 0 2px ${color}50, 0 4px 14px rgba(0,0,0,0.12)`,
+            overflow: 'visible',
+            minHeight: '160px',
+          }}
         >
-          {stop.order}
-        </div>
-        {/* Camper badge */}
-        {isCurrent && (
-          <div className="absolute -top-3 -right-3 z-10 text-xl leading-none">🚐</div>
-        )}
-        <PassportStamp stop={stop} date={stampDate} size={148} />
-      </button>
+          <div
+            className="absolute top-1.5 left-1.5 z-10 w-6 h-6 rounded-full flex items-center justify-center text-xs font-black text-white"
+            style={{ background: color }}
+          >
+            {stop.order}
+          </div>
+          <PassportStamp stop={stop} date={stampDate} size={148} />
+        </button>
+      </div>
     )
   }
 
   return (
-    <button
-      onClick={isLocked ? undefined : onTap}
-      disabled={isLocked}
-      className="relative flex flex-col rounded-xl overflow-hidden active:scale-95 transition-transform"
-      style={{
-        background: 'white',
-        boxShadow: isLocked
-          ? '0 1px 4px rgba(0,0,0,0.07)'
-          : `0 0 0 3px ${color}, 0 4px 16px rgba(0,0,0,0.16)`,
-        filter: isLocked ? 'grayscale(0.85) opacity(0.5)' : 'none',
-        cursor: isLocked ? 'default' : 'pointer',
-        minHeight: '160px',
-      }}
-    >
-      {/* Coloured header */}
-      <div
-        className="w-full py-2 px-3 flex items-center justify-between flex-shrink-0"
-        style={{ background: isLocked ? '#e5e7eb' : color }}
+    <div className="relative">
+      {currentBadge}
+      <button
+        onClick={isLocked ? undefined : onTap}
+        disabled={isLocked}
+        className="relative w-full flex flex-col rounded-xl overflow-hidden active:scale-95 transition-transform"
+        style={{
+          background: 'white',
+          boxShadow: isCurrent
+            ? `0 0 0 3px #f97316, 0 4px 20px rgba(249,115,22,0.45)`
+            : isLocked
+              ? '0 1px 4px rgba(0,0,0,0.07)'
+              : `0 0 0 3px ${color}, 0 4px 16px rgba(0,0,0,0.16)`,
+          filter: isLocked ? 'grayscale(0.85) opacity(0.5)' : 'none',
+          cursor: isLocked ? 'default' : 'pointer',
+          minHeight: '160px',
+        }}
       >
-        <span className="text-3xl leading-none">{stop.flag}</span>
-        <span className="text-xs font-black text-white w-6 h-6 rounded-full flex items-center justify-center"
-              style={{ background: 'rgba(0,0,0,0.2)' }}>
-          {stop.order}
-        </span>
-      </div>
-
-      {/* Body */}
-      <div className="flex-1 flex flex-col items-center justify-center px-2 py-2 gap-1"
-           style={{ background: isLocked ? '#f9fafb' : color + '18' }}>
-        <p className="text-sm font-black text-center leading-tight"
-           style={{ color: isLocked ? '#9ca3af' : fg(stop.countryCode) }}>
-          {shortName(stop.name)}
-        </p>
-        <p className="text-xs opacity-60 text-center"
-           style={{ color: isLocked ? '#9ca3af' : fg(stop.countryCode) }}>
-          {stop.country} · {stop.nights}🌙
-        </p>
-        {isLocked    && <span className="text-xl mt-1 opacity-30">🔒</span>}
-        {isAvailable && (
-          <span className="mt-1 text-xs font-black px-2 py-0.5 rounded-full text-white"
-                style={{ background: color }}>
-            ⭐ Quiz!
+        {/* Coloured header */}
+        <div
+          className="w-full py-2 px-3 flex items-center justify-between flex-shrink-0"
+          style={{ background: isLocked ? '#e5e7eb' : color }}
+        >
+          <span className="text-3xl leading-none">{stop.flag}</span>
+          <span className="text-xs font-black text-white w-6 h-6 rounded-full flex items-center justify-center"
+                style={{ background: 'rgba(0,0,0,0.2)' }}>
+            {stop.order}
           </span>
-        )}
-      </div>
+        </div>
 
-      {isCurrent && !isLocked && (
-        <div className="absolute -top-2 -right-2 text-lg leading-none">🚐</div>
-      )}
-    </button>
+        {/* Body */}
+        <div className="flex-1 flex flex-col items-center justify-center px-2 py-2 gap-1"
+             style={{ background: isLocked ? '#f9fafb' : color + '18' }}>
+          <p className="text-sm font-black text-center leading-tight"
+             style={{ color: isLocked ? '#9ca3af' : fg(stop.countryCode) }}>
+            {shortName(stop.name)}
+          </p>
+          <p className="text-xs opacity-60 text-center"
+             style={{ color: isLocked ? '#9ca3af' : fg(stop.countryCode) }}>
+            {stop.country} · {stop.nights}🌙
+          </p>
+          {isLocked    && <span className="text-xl mt-1 opacity-30">🔒</span>}
+          {isAvailable && (
+            <span className="mt-1 text-xs font-black px-2 py-0.5 rounded-full text-white"
+                  style={{ background: color }}>
+              ⭐ Quiz!
+            </span>
+          )}
+        </div>
+      </button>
+    </div>
   )
 }
 
