@@ -25,3 +25,10 @@ button, [role="button"] {
   -webkit-tap-highlight-color: transparent;
   user-select: none;
 }
+
+/* Camper van gently bobs while parked at a stop */
+@keyframes vanBob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-2.5px); }
+}
+.van-bob { animation: vanBob 1.6s ease-in-out infinite; }

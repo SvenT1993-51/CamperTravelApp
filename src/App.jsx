@@ -3,10 +3,12 @@ import BottomNav from './components/BottomNav.jsx'
 import KaartTab from './components/KaartTab.jsx'
 import PaspoortTab from './components/PaspoortTab.jsx'
 import DagboekTab from './components/DagboekTab.jsx'
+import WelcomeScreen from './components/WelcomeScreen.jsx'
 
 const LS_ACTIVE  = 'ce_activeStop'
 const LS_VISITED = 'ce_visited'
 const LS_STAMPED = 'ce_stamped'
+const LS_NAMES   = 'ce_names'
 
 const loadArr = (key) => { try { return JSON.parse(localStorage.getItem(key) || '[]') } catch { return [] } }
 
@@ -24,6 +26,13 @@ export default function App() {
   const [activeStopId,   setActiveStopId]   = useState(() => localStorage.getItem(LS_ACTIVE) ?? null)
   const [visitedStopIds, setVisitedStopIds] = useState(() => loadArr(LS_VISITED))
   const [stampedStops,   setStampedStops]   = useState(loadStamped)
+  const [names,          setNames]          = useState(() => loadArr(LS_NAMES))
+  const [entered,        setEntered]        = useState(false)
+
+  function handleSaveNames(nextNames) {
+    setNames(nextNames)
+    localStorage.setItem(LS_NAMES, JSON.stringify(nextNames))
+  }
 
   function handleSetActive(stopId) {
     setActiveStopId(stopId)
@@ -45,6 +54,16 @@ export default function App() {
       localStorage.setItem(LS_STAMPED, JSON.stringify(next))
       return next
     })
+  }
+
+  if (!entered) {
+    return (
+      <WelcomeScreen
+        names={names}
+        onSaveNames={handleSaveNames}
+        onEnter={() => setEntered(true)}
+      />
+    )
   }
 
   return (
