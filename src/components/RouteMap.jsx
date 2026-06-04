@@ -18,6 +18,38 @@ const COUNTRY_LABELS = [
   { name: 'ITALIË',      x: 420,  y: 742 },
 ]
 
+// One bold signature emoji per country, set in its open interior — clear of
+// the route line, the numbered stop pins, and the country name labels.
+const COUNTRY_DECOR = [
+  { e: '🌷',  x: 126, y: 90,  s: 44 }, // Nederland — tulp
+  { e: '🍟',  x: 104, y: 186, s: 50 }, // België — friet
+  { e: '🏰',  x: 538, y: 246, s: 56 }, // Duitsland — kasteel
+  { e: '🏔️', x: 735, y: 466, s: 52 }, // Oostenrijk — bergen
+  { e: '🍫',  x: 305, y: 596, s: 48 }, // Zwitserland — chocola
+  { e: '🗼',  x: 85,  y: 486, s: 58 }, // Frankrijk — Eiffeltoren
+  { e: '🍕',  x: 448, y: 708, s: 56 }, // Italië — pizza
+]
+
+// Camper van rides this high above the route line / parks above a pin
+const VAN_DY = 23
+
+// Great-circle distance between two {lat, lng} points, in km
+function haversineKm(a, b) {
+  const R = 6371
+  const toRad = (d) => (d * Math.PI) / 180
+  const dLat = toRad(b.lat - a.lat)
+  const dLng = toRad(b.lng - a.lng)
+  const h =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(a.lat)) * Math.cos(toRad(b.lat)) * Math.sin(dLng / 2) ** 2
+  return 2 * R * Math.asin(Math.sqrt(h))
+}
+// Real roads wind, so nudge the straight-line distance up a touch to feel right
+const ROAD_FACTOR = 1.25
+
+const easeInOutCubic = (t) =>
+  t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+
 // Catmull-Rom → cubic bezier: smooth curve through all route points
 function buildCurvedPath(pts) {
   if (pts.length < 2) return ''
@@ -77,6 +109,27 @@ export default function RouteMap({ home, stops, activeStopId, onSetActive }) {
   const zoomRef = useRef({ scale: 1, tx: 0, ty: 0 })
   const [zoom,  setZoom]  = useState({ scale: 1, tx: 0, ty: 0 })
   const [isAnimating, setIsAnimating] = useState(false)
+
+  // ── Driving van ──────────────────────────────────────────────────────────
+  // The van rides the route path. On each stop change it animates from the old
+  // waypoint to the new one (forwards or backwards), then parks with a bob.
+  const routeRef    = useRef(null)   // the drawn route <path>, for getPointAtLength
+  const wpLenRef    = useRef(null)   // path length at each waypoint [home, ...stops]
+  const vanGRef     = useRef(null)   // outer <g> we move along the road
+  const vanFlipRef  = useRef(null)   // inner <g> we mirror to face travel direction
+  const animRef     = useRef(0)      // current rAF id
+  const prevIdxRef  = useRef(null)   // last parked waypoint index
+  const initRef     = useRef(false)  // have we placed the van the first time?
+  const home0       = MARKERS.find(m => m.id === 'home')
+  const [vanPark, setVanPark] = useState({ x: home0.x, y: home0.y - VAN_DY, flip: false })
+  const [driving, setDriving] = useState(false)
+
+  // Waypoint index of the active stop (home = 0); default home when nothing set
+  const routeIds = ['home', ...stops.map(s => s.id)]
+  function currentIdx() {
+    const i = routeIds.indexOf(activeStopId)
+    return i < 0 ? 0 : i
+  }
 
   function applyZoom(z) {
     zoomRef.current = z
@@ -202,6 +255,82 @@ export default function RouteMap({ home, stops, activeStopId, onSetActive }) {
 
   const routePath = buildCurvedPath(routePoints)
 
+  // Measure the path length at each waypoint once the route is drawn, then
+  // place the van at the current stop. Waypoints lie on the curve, so we find
+  // each one's length by sampling the path and taking the closest point.
+  useEffect(() => {
+    const path = routeRef.current
+    if (!path) return
+    const total = path.getTotalLength()
+    const N = 900
+    const samples = []
+    for (let k = 0; k <= N; k++) {
+      const len = (total * k) / N
+      const p = path.getPointAtLength(len)
+      samples.push({ len, x: p.x, y: p.y })
+    }
+    wpLenRef.current = routePoints.map(wp => {
+      let bestLen = 0, bestD = Infinity
+      for (const s of samples) {
+        const d = (s.x - wp.x) ** 2 + (s.y - wp.y) ** 2
+        if (d < bestD) { bestD = d; bestLen = s.len }
+      }
+      return bestLen
+    })
+    if (!initRef.current) {
+      placeVan(currentIdx())
+      initRef.current = true
+    }
+  }, [routePath]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Drive the van whenever the active stop changes
+  useEffect(() => {
+    if (!initRef.current || !wpLenRef.current) return
+    driveTo(currentIdx())
+    return () => cancelAnimationFrame(animRef.current)
+  }, [activeStopId]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  function placeVan(idx) {
+    const p = routePoints[idx]
+    if (!p) return
+    prevIdxRef.current = idx
+    setVanPark(v => ({ x: p.x, y: p.y - VAN_DY, flip: v.flip }))
+  }
+
+  function driveTo(toIdx) {
+    const path = routeRef.current
+    const lens = wpLenRef.current
+    if (!path || !lens) return
+    const fromIdx = prevIdxRef.current
+    if (fromIdx === toIdx) { placeVan(toIdx); return }
+
+    cancelAnimationFrame(animRef.current)
+    setDriving(true)
+    const len0 = lens[fromIdx], len1 = lens[toIdx]
+    const duration = Math.min(3600, Math.max(1100, Math.abs(len1 - len0) * 6))
+    const start = performance.now()
+    let lastX = routePoints[fromIdx].x
+
+    function frame(now) {
+      const t = Math.min(1, (now - start) / duration)
+      const len = len0 + (len1 - len0) * easeInOutCubic(t)
+      const p = path.getPointAtLength(len)
+      const x = p.x, y = p.y - VAN_DY
+      const movingRight = x >= lastX
+      lastX = x
+      if (vanGRef.current)   vanGRef.current.setAttribute('transform', `translate(${x},${y})`)
+      if (vanFlipRef.current) vanFlipRef.current.setAttribute('transform', movingRight ? 'scale(-1,1)' : '')
+      if (t < 1) {
+        animRef.current = requestAnimationFrame(frame)
+      } else {
+        prevIdxRef.current = toIdx
+        setVanPark({ x, y, flip: movingRight })
+        setDriving(false)
+      }
+    }
+    animRef.current = requestAnimationFrame(frame)
+  }
+
   // Only show name labels when zoomed in — at default zoom the Alpine cluster
   // is too dense; a single zoomed-in view has 2-3 visible stops at most.
   // Active stop always gets its label so current location is always clear.
@@ -231,6 +360,22 @@ export default function RouteMap({ home, stops, activeStopId, onSetActive }) {
   }
 
   const homeMarker = markerById['home']
+
+  // ── Reis-teller: km driven to reach the current stop ─────────────────────
+  // Follow the route home → … → current stop, in travel order. The number
+  // reflects where we are now, not every stop ever tapped.
+  const activeStop = activeStopId && activeStopId !== 'home'
+    ? stops.find(s => s.id === activeStopId)
+    : null
+  const legPoints = activeStop
+    ? [home, ...stops.filter(s => s.order <= activeStop.order).sort((a, b) => a.order - b.order)]
+    : [home]
+  let kmTotal = 0
+  for (let i = 1; i < legPoints.length; i++) {
+    kmTotal += haversineKm(legPoints[i - 1], legPoints[i])
+  }
+  const kmText = Math.round(kmTotal * ROAD_FACTOR).toLocaleString('nl-NL')
+  const reachedCount = activeStop ? activeStop.order : 0
 
   return (
     <div className="flex flex-col h-full">
@@ -267,7 +412,20 @@ export default function RouteMap({ home, stops, activeStopId, onSetActive }) {
               <filter id="mkSh" x="-50%" y="-50%" width="200%" height="200%">
                 <feDropShadow dx="1" dy="2" stdDeviation="3" floodOpacity="0.4" />
               </filter>
+              <filter id="decoSh" x="-40%" y="-40%" width="180%" height="180%">
+                <feDropShadow dx="0" dy="1" stdDeviation="1.2" floodOpacity="0.35" />
+              </filter>
             </defs>
+
+            {/* Decorations — one big emoji per country, behind route/markers.
+                pointer-events off so taps fall through to the map. */}
+            <g style={{ pointerEvents: 'none' }} filter="url(#decoSh)">
+              {COUNTRY_DECOR.map((d, i) => (
+                <text key={i} x={d.x} y={d.y} textAnchor="middle" fontSize={d.s} opacity="0.95">
+                  {d.e}
+                </text>
+              ))}
+            </g>
 
             {/* Country labels */}
             {COUNTRY_LABELS.map(lbl => (
@@ -291,7 +449,7 @@ export default function RouteMap({ home, stops, activeStopId, onSetActive }) {
 
             {/* Route — 3 layers so the line pops against any country colour */}
             {/* Layer 1: wide white halo prevents merging with map fills */}
-            <path d={routePath} fill="none" stroke="white" strokeWidth="11"
+            <path ref={routeRef} d={routePath} fill="none" stroke="white" strokeWidth="11"
               strokeLinecap="round" strokeLinejoin="round" opacity="0.92" />
             {/* Layer 2: solid orange road */}
             <path d={routePath} fill="none" stroke="#f97316" strokeWidth="7"
@@ -332,9 +490,6 @@ export default function RouteMap({ home, stops, activeStopId, onSetActive }) {
                       style={{ pointerEvents: 'none' }}
                     />
                   </>}
-                  {isActive && (
-                    <text x={homeMarker.x + 24} y={homeMarker.y - 10} fontSize="20">🚐</text>
-                  )}
                 </g>
               )
             })()}
@@ -382,13 +537,43 @@ export default function RouteMap({ home, stops, activeStopId, onSetActive }) {
                       style={{ pointerEvents: 'none' }}
                     />
                   </>}
-                  {isActive && (
-                    <text x={m.x + 24} y={m.y - 12} fontSize="20">🚐</text>
-                  )}
                 </g>
               )
             })}
+
+            {/* The camper van — rides the route, parks with a gentle bob */}
+            <g ref={vanGRef} transform={`translate(${vanPark.x},${vanPark.y})`} style={{ pointerEvents: 'none' }}>
+              <g className={driving ? '' : 'van-bob'}>
+                <g ref={vanFlipRef} transform={vanPark.flip ? 'scale(-1,1)' : ''}>
+                  {driving && (
+                    <text x="18" y="6" textAnchor="middle" fontSize="18" opacity="0.75">💨</text>
+                  )}
+                  <text x="0" y="0" textAnchor="middle" dominantBaseline="central" fontSize="34"
+                    filter="url(#mkSh)">🚐</text>
+                </g>
+              </g>
+            </g>
           </svg>
+        </div>
+
+        {/* Reis-teller — how far we've come, parked top-left like a dashboard */}
+        <div className="absolute top-3 left-3 z-20 bg-white/90 rounded-2xl shadow-md px-4 py-2 flex items-center gap-3 pointer-events-none select-none">
+          <span className="text-3xl leading-none">🚐</span>
+          {reachedCount === 0 ? (
+            <span className="text-sm font-black text-amber-800 leading-tight">
+              Klaar voor<br />vertrek!
+            </span>
+          ) : (
+            <div className="leading-none">
+              <div className="flex items-baseline gap-1">
+                <span className="text-2xl font-black text-orange-600">{kmText}</span>
+                <span className="text-xs font-bold text-amber-700">km gereden</span>
+              </div>
+              <div className="text-xs font-bold text-amber-700 mt-1">
+                plekje {reachedCount} van {stops.length} 🚩
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Zoom controls — outside the zoomable wrapper, always visible */}

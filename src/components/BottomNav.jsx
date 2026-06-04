@@ -1,9 +1,10 @@
 import React from 'react'
 
 const TABS = [
-  { id: 'kaart',    label: 'Kaart',    emoji: '🗺️' },
-  { id: 'paspoort', label: 'Paspoort', emoji: '🗒️' },
-  { id: 'dagboek',  label: 'Dagboek',  emoji: '📖' },
+  { id: 'kaart',    label: 'Kaart',     emoji: '🗺️' },
+  { id: 'paspoort', label: 'Paspoort',  emoji: '🗒️' },
+  { id: 'trofeeen', label: 'Trofeeën',  emoji: '🏆' },
+  { id: 'dagboek',  label: 'Dagboek',   emoji: '📖' },
 ]
 
 export default function BottomNav({ activeTab, onTabChange }) {
