@@ -3,6 +3,7 @@ import BottomNav from './components/BottomNav.jsx'
 import KaartTab from './components/KaartTab.jsx'
 import PaspoortTab from './components/PaspoortTab.jsx'
 import DagboekTab from './components/DagboekTab.jsx'
+import TrofeeenTab from './components/TrofeeenTab.jsx'
 import WelcomeScreen from './components/WelcomeScreen.jsx'
 
 const LS_ACTIVE  = 'ce_activeStop'
@@ -79,6 +80,9 @@ export default function App() {
             activeStopId={activeStopId}
             onStampEarned={handleStampEarned}
           />
+        )}
+        {activeTab === 'trofeeen' && (
+          <TrofeeenTab stampedStops={stampedStops} visitedStopIds={visitedStopIds} />
         )}
         {activeTab === 'dagboek' && <DagboekTab activeStopId={activeStopId} />}
       </main>

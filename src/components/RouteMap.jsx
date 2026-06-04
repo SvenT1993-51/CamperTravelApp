@@ -33,6 +33,20 @@ const COUNTRY_DECOR = [
 // Camper van rides this high above the route line / parks above a pin
 const VAN_DY = 23
 
+// Great-circle distance between two {lat, lng} points, in km
+function haversineKm(a, b) {
+  const R = 6371
+  const toRad = (d) => (d * Math.PI) / 180
+  const dLat = toRad(b.lat - a.lat)
+  const dLng = toRad(b.lng - a.lng)
+  const h =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(a.lat)) * Math.cos(toRad(b.lat)) * Math.sin(dLng / 2) ** 2
+  return 2 * R * Math.asin(Math.sqrt(h))
+}
+// Real roads wind, so nudge the straight-line distance up a touch to feel right
+const ROAD_FACTOR = 1.25
+
 const easeInOutCubic = (t) =>
   t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
 
@@ -347,6 +361,22 @@ export default function RouteMap({ home, stops, activeStopId, onSetActive }) {
 
   const homeMarker = markerById['home']
 
+  // ── Reis-teller: km driven to reach the current stop ─────────────────────
+  // Follow the route home → … → current stop, in travel order. The number
+  // reflects where we are now, not every stop ever tapped.
+  const activeStop = activeStopId && activeStopId !== 'home'
+    ? stops.find(s => s.id === activeStopId)
+    : null
+  const legPoints = activeStop
+    ? [home, ...stops.filter(s => s.order <= activeStop.order).sort((a, b) => a.order - b.order)]
+    : [home]
+  let kmTotal = 0
+  for (let i = 1; i < legPoints.length; i++) {
+    kmTotal += haversineKm(legPoints[i - 1], legPoints[i])
+  }
+  const kmText = Math.round(kmTotal * ROAD_FACTOR).toLocaleString('nl-NL')
+  const reachedCount = activeStop ? activeStop.order : 0
+
   return (
     <div className="flex flex-col h-full">
       {/* Map container */}
@@ -524,6 +554,26 @@ export default function RouteMap({ home, stops, activeStopId, onSetActive }) {
               </g>
             </g>
           </svg>
+        </div>
+
+        {/* Reis-teller — how far we've come, parked top-left like a dashboard */}
+        <div className="absolute top-3 left-3 z-20 bg-white/90 rounded-2xl shadow-md px-4 py-2 flex items-center gap-3 pointer-events-none select-none">
+          <span className="text-3xl leading-none">🚐</span>
+          {reachedCount === 0 ? (
+            <span className="text-sm font-black text-amber-800 leading-tight">
+              Klaar voor<br />vertrek!
+            </span>
+          ) : (
+            <div className="leading-none">
+              <div className="flex items-baseline gap-1">
+                <span className="text-2xl font-black text-orange-600">{kmText}</span>
+                <span className="text-xs font-bold text-amber-700">km gereden</span>
+              </div>
+              <div className="text-xs font-bold text-amber-700 mt-1">
+                plekje {reachedCount} van {stops.length} 🚩
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Zoom controls — outside the zoomable wrapper, always visible */}
