@@ -11,6 +11,13 @@ function quizImgSrc(path) {
   return QUIZ_IMAGES[`../assets/${path}`]?.default ?? null
 }
 
+// Best picture-quiz star score per stop: { [stopId]: 1|2|3 }. Kept separate from
+// the stamp so a replay can improve the score. Mirrors ce_wordstars.
+const LS_QUIZSTARS = 'ce_quizstars'
+function loadQuizStars() {
+  try { return JSON.parse(localStorage.getItem(LS_QUIZSTARS)) || {} } catch { return {} }
+}
+
 const COUNTRY_BG = {
   DE: '#E5806B', AT: '#69B0B6', IT: '#93C18E',
   CH: '#EF7C58', FR: '#F4C95D', NL: '#7FB99B',
@@ -37,7 +44,7 @@ function shortName(name) {
 }
 
 // ── Stamp grid card ──────────────────────────────────────────────────────────
-function StampCard({ stop, state, isCurrent, stampDate, onTap }) {
+function StampCard({ stop, state, isCurrent, stampDate, stars, onTap }) {
   const color = bg(stop.countryCode)
   const isLocked    = state === 'locked'
   const isAvailable = state === 'available'
@@ -74,6 +81,13 @@ function StampCard({ stop, state, isCurrent, stampDate, onTap }) {
             {stop.order}
           </div>
           <PassportStamp stop={stop} date={stampDate} size={148} />
+          {stars > 0 && (
+            <div className="absolute bottom-1 right-1 z-10 flex items-center gap-[1px] px-1.5 py-0.5 rounded-full bg-white/90 shadow-sm pointer-events-none">
+              {Array.from({ length: stars }).map((_, i) => (
+                <span key={i} style={{ fontSize: 11, lineHeight: 1 }}>⭐</span>
+              ))}
+            </div>
+          )}
         </button>
       </div>
     )
@@ -139,6 +153,8 @@ function QuizScreen({ stop, questions, onPass, onBack }) {
   const [qIdx,     setQIdx]     = useState(0)
   const [selected, setSelected] = useState(null)
   const [wrong,    setWrong]    = useState(false)
+  const [firstTry, setFirstTry] = useState(0)     // questions nailed on the first guess
+  const [missed,   setMissed]   = useState(false) // current question was already missed once
 
   const color   = bg(stop.countryCode)
   const q       = questions[qIdx]
@@ -148,13 +164,23 @@ function QuizScreen({ stop, questions, onPass, onBack }) {
   function choose(option) {
     if (selected) return
     setSelected(option.label)
-    if (!option.correct) setWrong(true)
+    if (option.correct) {
+      if (!missed) setFirstTry(n => n + 1)
+    } else {
+      setWrong(true)
+      setMissed(true)
+    }
   }
 
   function next() {
     if (wrong) { setSelected(null); setWrong(false); return }
-    if (qIdx + 1 < total) { setQIdx(qIdx + 1); setSelected(null); setWrong(false) }
-    else onPass()
+    if (qIdx + 1 < total) {
+      setQIdx(qIdx + 1); setSelected(null); setWrong(false); setMissed(false)
+    } else {
+      // 3/3 first try = ⭐⭐⭐, 2/3 = ⭐⭐, otherwise ⭐ (kids always pass eventually)
+      const stars = firstTry >= total ? 3 : firstTry >= Math.ceil(total / 2) ? 2 : 1
+      onPass(stars)
+    }
   }
 
   function optionStyle(option) {
@@ -230,15 +256,30 @@ function QuizScreen({ stop, questions, onPass, onBack }) {
 }
 
 // ── Celebration screen ────────────────────────────────────────────────────────
-function CelebrationScreen({ stop, earnedDate, onBack }) {
+function CelebrationScreen({ stop, earnedDate, stars, onBack }) {
   const color = bg(stop.countryCode)
   return (
-    <div className="h-full flex flex-col items-center justify-center gap-6 px-8"
+    <div className="h-full flex flex-col items-center justify-center gap-5 px-8"
          style={{ background: color + '22' }}>
+      <style>{`@keyframes ce-cel-star{0%{transform:scale(0);opacity:0}60%{transform:scale(1.3)}100%{transform:scale(1);opacity:1}}`}</style>
       <p className="text-4xl font-black text-center" style={{ color: fg(stop.countryCode) }}>
         🎉 Stempel verdiend!
       </p>
-      <PassportStamp stop={stop} date={earnedDate} size={220} />
+      {stars > 0 && (
+        <div className="flex flex-col items-center gap-1">
+          <div className="flex gap-2">
+            {[0, 1, 2].map(i => (
+              <span key={i} style={{ fontSize: 46, animation: `ce-cel-star 0.45s ease-out ${0.12 * i}s both` }}>
+                {i < stars ? '⭐' : '☆'}
+              </span>
+            ))}
+          </div>
+          <p className="text-lg font-black" style={{ color: fg(stop.countryCode) }}>
+            {stars === 3 ? 'Alles in één keer goed!' : stars === 2 ? 'Goed gedaan!' : 'Gelukt!'}
+          </p>
+        </div>
+      )}
+      <PassportStamp stop={stop} date={earnedDate} size={190} />
       <button onClick={onBack}
         className="min-h-[64px] px-10 py-3 rounded-2xl text-white font-black text-lg active:scale-95"
         style={{ background: color }}>
@@ -252,13 +293,25 @@ function CelebrationScreen({ stop, earnedDate, onBack }) {
 export default function PaspoortTab({ visitedStopIds, stampedStops, activeStopId, onStampEarned }) {
   const stops = tripData.stops
 
-  const [mode,       setMode]      = useState('grid')
-  const [quizStop,   setQuizStop]  = useState(null)
-  const [earnedDate, setEarnedDate] = useState(null)
+  const [mode,        setMode]        = useState('grid')
+  const [quizStop,    setQuizStop]    = useState(null)
+  const [earnedDate,  setEarnedDate]  = useState(null)
+  const [earnedStars, setEarnedStars] = useState(0)
+  const [quizStars,   setQuizStars]   = useState(loadQuizStars)
 
   const stampedIds  = stampedStops.map(s => s.id)
   const stampDate   = (stopId) => stampedStops.find(s => s.id === stopId)?.date ?? null
   const stampedCount = stampedStops.length
+
+  function recordStars(stopId, stars) {
+    setQuizStars(prev => {
+      const best = Math.max(prev[stopId] ?? 0, stars)
+      if (best === (prev[stopId] ?? 0)) return prev
+      const next = { ...prev, [stopId]: best }
+      localStorage.setItem(LS_QUIZSTARS, JSON.stringify(next))
+      return next
+    })
+  }
 
   const shuffledQuestions = useMemo(() => {
     if (!quizStop) return []
@@ -281,14 +334,17 @@ export default function PaspoortTab({ visitedStopIds, stampedStops, activeStopId
     setMode('detail')
   }
 
-  function handlePass() {
+  function handlePass(stars) {
+    recordStars(quizStop.id, stars)
+    setEarnedStars(stars)
     if (stampedIds.includes(quizStop.id)) {
-      backToGrid()
-      return
+      // Replaying an already-earned stamp: keep the stamp & date, still celebrate the score
+      setEarnedDate(stampDate(quizStop.id))
+    } else {
+      const today = new Date().toISOString().slice(0, 10)
+      setEarnedDate(today)
+      onStampEarned(quizStop.id)
     }
-    const today = new Date().toISOString().slice(0, 10)
-    setEarnedDate(today)
-    onStampEarned(quizStop.id)
     setMode('celebrate')
   }
 
@@ -296,6 +352,7 @@ export default function PaspoortTab({ visitedStopIds, stampedStops, activeStopId
     setMode('grid')
     setQuizStop(null)
     setEarnedDate(null)
+    setEarnedStars(0)
   }
 
   if (mode === 'detail' && quizStop) {
@@ -325,7 +382,7 @@ export default function PaspoortTab({ visitedStopIds, stampedStops, activeStopId
     return <QuizScreen stop={quizStop} questions={shuffledQuestions} onPass={handlePass} onBack={backToGrid} />
   }
   if (mode === 'celebrate' && quizStop) {
-    return <CelebrationScreen stop={quizStop} earnedDate={earnedDate} onBack={backToGrid} />
+    return <CelebrationScreen stop={quizStop} earnedDate={earnedDate} stars={earnedStars} onBack={backToGrid} />
   }
 
   return (
@@ -385,6 +442,7 @@ export default function PaspoortTab({ visitedStopIds, stampedStops, activeStopId
               state={stampState(stop)}
               isCurrent={stop.id === activeStopId}
               stampDate={stampDate(stop.id)}
+              stars={quizStars[stop.id] ?? 0}
               onTap={() => {
                 const s = stampState(stop)
                 if (s === 'locked') return

@@ -47,9 +47,9 @@ function extractIcon(text) {
 function DiaryEntry({ entry, onDelete }) {
   const label = stopLabel(entry.stopId)
   return (
-    <div className="flex gap-3 bg-white rounded-2xl shadow-sm px-4 py-3 relative group">
+    <div className="flex gap-3 bg-white rounded-2xl shadow-sm px-4 py-3 relative">
       <span className="text-4xl leading-none flex-shrink-0 mt-0.5">{extractIcon(entry.text)}</span>
-      <div className="flex-1 min-w-0">
+      <div className="flex-1 min-w-0 pr-9">
         {label && (
           <div className="flex items-center gap-1 mb-1">
             <span className="text-xs">📍</span>
@@ -58,9 +58,10 @@ function DiaryEntry({ entry, onDelete }) {
         )}
         <p className="text-base leading-snug text-gray-800 whitespace-pre-wrap break-words">{entry.text}</p>
       </div>
+      {/* Always visible + a proper tap target — hover doesn't exist on a tablet */}
       <button
         onClick={() => onDelete(entry.id)}
-        className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center text-gray-300 hover:text-red-400 text-lg leading-none opacity-0 group-hover:opacity-100 transition-opacity active:scale-90"
+        className="absolute top-1.5 right-1.5 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-400 text-2xl leading-none active:scale-90 active:bg-red-100 active:text-red-500 transition-transform"
         aria-label="Verwijder"
       >
         ×

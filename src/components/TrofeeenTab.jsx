@@ -5,6 +5,7 @@ import Confetti from './Confetti.jsx'
 const LS_SPOTTED   = 'ce_spotted'
 const LS_DIARY     = 'ce_diary'
 const LS_WORDSTARS = 'ce_wordstars'
+const LS_QUIZSTARS = 'ce_quizstars'
 const LS_SEEN      = 'ce_trophies_seen'
 
 function load(key, fallback) {
@@ -15,11 +16,13 @@ const CATEGORIES = ['Stempels', 'Speurder', 'Woordjes', 'Dagboek & reis']
 
 // Build the full trophy list from the player's progress. Each trophy is simply
 // earned or not; the room stays motivating because locked ones show how to get them.
-function buildTrophies({ stampCount, fullySpotted, playedCount, threeStarCount, totalStars, diaryCount, visitedCount, countryCount, totalStops }) {
+function buildTrophies({ stampCount, fullySpotted, playedCount, threeStarCount, totalStars, quizThreeStar, totalQuizStars, diaryCount, visitedCount, countryCount, totalStops }) {
   const base = [
     { id: 'stamp1',    cat: 'Stempels',       icon: '🥇', title: 'Eerste stempel',  desc: 'Verdien je eerste stempel',     earned: stampCount >= 1 },
     { id: 'stamp6',    cat: 'Stempels',       icon: '🎖️', title: 'Op de helft',     desc: '6 stempels verdiend',           earned: stampCount >= 6 },
     { id: 'stamp12',   cat: 'Stempels',       icon: '🏆', title: 'Alle stempels',   desc: `Alle ${totalStops} stempels verdiend`, earned: stampCount >= totalStops },
+    { id: 'quiz3star', cat: 'Stempels',       icon: '🌠', title: 'Quizster',        desc: 'Haal 3 sterren in een quiz',    earned: quizThreeStar >= 1 },
+    { id: 'quizstars', cat: 'Stempels',       icon: '✨', title: 'Sterrenjager',    desc: 'Verzamel 24 quizsterren',       earned: totalQuizStars >= 24 },
 
     { id: 'spot1',     cat: 'Speurder',       icon: '🔍', title: 'Speurneus',       desc: 'Vind alles op één plek',        earned: fullySpotted >= 1 },
     { id: 'spot5',     cat: 'Speurder',       icon: '🕵️', title: 'Scherpe ogen',    desc: 'Vind alles op 5 plekken',       earned: fullySpotted >= 5 },
@@ -88,6 +91,7 @@ export default function TrofeeenTab({ stampedStops, visitedStopIds }) {
   const spotted   = load(LS_SPOTTED, {})
   const diary     = load(LS_DIARY, [])
   const wordstars = load(LS_WORDSTARS, {})
+  const quizstars = load(LS_QUIZSTARS, {})
 
   const stampCount   = stampedStops.length
   const fullySpotted = stops.filter(s => {
@@ -97,6 +101,8 @@ export default function TrofeeenTab({ stampedStops, visitedStopIds }) {
   const playedCount    = stops.filter(s => (wordstars[s.id] ?? 0) >= 1).length
   const threeStarCount = stops.filter(s => (wordstars[s.id] ?? 0) >= 3).length
   const totalStars     = stops.reduce((sum, s) => sum + (wordstars[s.id] ?? 0), 0)
+  const quizThreeStar  = stops.filter(s => (quizstars[s.id] ?? 0) >= 3).length
+  const totalQuizStars = stops.reduce((sum, s) => sum + (quizstars[s.id] ?? 0), 0)
   const diaryCount     = diary.length
   const visitedCount   = visitedStopIds.length
   const countryCount   = new Set(
@@ -105,6 +111,7 @@ export default function TrofeeenTab({ stampedStops, visitedStopIds }) {
 
   const trophies = buildTrophies({
     stampCount, fullySpotted, playedCount, threeStarCount, totalStars,
+    quizThreeStar, totalQuizStars,
     diaryCount, visitedCount, countryCount, totalStops: stops.length,
   })
 
