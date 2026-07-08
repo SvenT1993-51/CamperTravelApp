@@ -438,7 +438,8 @@ export default function PaspoortTab({ visitedStopIds, stampedStops, activeStopId
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-5 pb-4">
+      {/* pt-6 leaves room for the "Wij zijn hier!" badge that pokes above the top row */}
+      <div className="flex-1 overflow-y-auto px-5 pt-6 pb-4">
         <div className="grid grid-cols-4 gap-4" style={{ gridAutoRows: '1fr' }}>
           {stops.map(stop => (
             <StampCard
