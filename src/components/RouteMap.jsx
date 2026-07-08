@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import mapSvgRaw from '../assets/europe-route-map.svg?raw'
 import markersJson from '../data/map-markers.json'
+import { kmDrivenTo } from '../lib/distance.js'
 
 const MARKERS = markersJson.markers
 const VB_W = 812
@@ -32,20 +33,6 @@ const COUNTRY_DECOR = [
 
 // Camper van rides this high above the route line / parks above a pin
 const VAN_DY = 23
-
-// Great-circle distance between two {lat, lng} points, in km
-function haversineKm(a, b) {
-  const R = 6371
-  const toRad = (d) => (d * Math.PI) / 180
-  const dLat = toRad(b.lat - a.lat)
-  const dLng = toRad(b.lng - a.lng)
-  const h =
-    Math.sin(dLat / 2) ** 2 +
-    Math.cos(toRad(a.lat)) * Math.cos(toRad(b.lat)) * Math.sin(dLng / 2) ** 2
-  return 2 * R * Math.asin(Math.sqrt(h))
-}
-// Real roads wind, so nudge the straight-line distance up a touch to feel right
-const ROAD_FACTOR = 1.25
 
 const easeInOutCubic = (t) =>
   t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
@@ -99,7 +86,7 @@ function mapLabel(name) {
   return shorter ? shorter.trim() : first.slice(0, 12) + '…'
 }
 
-export default function RouteMap({ home, stops, activeStopId, onSetActive }) {
+export default function RouteMap({ home, stops, activeStopId, onSetActive, onOpenBingo }) {
   const [settingMode, setSettingMode] = useState(false)
   const mapRef      = useRef(null)
   const containerRef = useRef(null)
@@ -367,14 +354,7 @@ export default function RouteMap({ home, stops, activeStopId, onSetActive }) {
   const activeStop = activeStopId && activeStopId !== 'home'
     ? stops.find(s => s.id === activeStopId)
     : null
-  const legPoints = activeStop
-    ? [home, ...stops.filter(s => s.order <= activeStop.order).sort((a, b) => a.order - b.order)]
-    : [home]
-  let kmTotal = 0
-  for (let i = 1; i < legPoints.length; i++) {
-    kmTotal += haversineKm(legPoints[i - 1], legPoints[i])
-  }
-  const kmText = Math.round(kmTotal * ROAD_FACTOR).toLocaleString('nl-NL')
+  const kmText = Math.round(kmDrivenTo(home, stops, activeStop)).toLocaleString('nl-NL')
   const reachedCount = activeStop ? activeStop.order : 0
 
   return (
@@ -609,14 +589,22 @@ export default function RouteMap({ home, stops, activeStopId, onSetActive }) {
                 })()
             : '📍 Kies waar we zijn'}
         </div>
-        <button
-          onClick={() => setSettingMode(m => !m)}
-          className={`min-h-[64px] px-6 py-2 rounded-2xl text-white font-bold text-base shadow-md active:scale-95 transition-transform ${
-            settingMode ? 'bg-amber-500 ring-4 ring-amber-300' : 'bg-orange-500'
-          }`}
-        >
-          {settingMode ? '✋ Tik op een stop' : '🚐 We zijn hier'}
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={onOpenBingo}
+            className="min-h-[64px] px-5 py-2 rounded-2xl text-white font-bold text-base shadow-md active:scale-95 transition-transform bg-orange-500"
+          >
+            🚗 Kenteken-bingo
+          </button>
+          <button
+            onClick={() => setSettingMode(m => !m)}
+            className={`min-h-[64px] px-6 py-2 rounded-2xl text-white font-bold text-base shadow-md active:scale-95 transition-transform ${
+              settingMode ? 'bg-amber-500 ring-4 ring-amber-300' : 'bg-orange-500'
+            }`}
+          >
+            {settingMode ? '✋ Tik op een stop' : '🚐 We zijn hier'}
+          </button>
+        </div>
       </div>
     </div>
   )

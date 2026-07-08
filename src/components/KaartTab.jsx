@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import RouteMap from './RouteMap.jsx'
 import StopCard from './StopCard.jsx'
+import KentekenBingo from './KentekenBingo.jsx'
 import tripData from '../data/trip.json'
 
 export default function KaartTab({ activeStopId, onSetActive }) {
+  const [showBingo, setShowBingo] = useState(false)
+
   const activeStop =
     activeStopId && activeStopId !== 'home'
       ? tripData.stops.find(s => s.id === activeStopId)
@@ -18,6 +21,7 @@ export default function KaartTab({ activeStopId, onSetActive }) {
           stops={tripData.stops}
           activeStopId={activeStopId}
           onSetActive={onSetActive}
+          onOpenBingo={() => setShowBingo(true)}
         />
       </div>
 
@@ -27,6 +31,8 @@ export default function KaartTab({ activeStopId, onSetActive }) {
           <StopCard stop={activeStop} />
         </div>
       )}
+
+      {showBingo && <KentekenBingo onClose={() => setShowBingo(false)} />}
     </div>
   )
 }

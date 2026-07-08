@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
 import tripData from '../data/trip.json'
+import ReisverslagView from './ReisverslagView.jsx'
 
 const LS_DIARY = 'ce_diary'
 
@@ -75,6 +76,7 @@ export default function DagboekTab({ activeStopId }) {
   const [entries, setEntries] = useState(loadEntries)
   const [text,    setText]    = useState('')
   const [shake,   setShake]   = useState(false)
+  const [showVerslag, setShowVerslag] = useState(false)
   const textareaRef = useRef(null)
 
   const location = stopLabel(activeStopId)
@@ -188,11 +190,19 @@ export default function DagboekTab({ activeStopId }) {
 
       {/* ── Right: timeline (65%) ── */}
       <div className="flex-1 flex flex-col overflow-hidden bg-brand-cream">
-        <div className="flex-shrink-0 px-6 pt-4 pb-2">
-          <h2 className="text-xl font-black text-amber-900">📖 Dagboek</h2>
-          <p className="text-sm text-amber-700">
-            {entries.length} {entries.length === 1 ? 'herinnering' : 'herinneringen'}
-          </p>
+        <div className="flex-shrink-0 px-6 pt-4 pb-2 flex items-start justify-between gap-3">
+          <div>
+            <h2 className="text-xl font-black text-amber-900">📖 Dagboek</h2>
+            <p className="text-sm text-amber-700">
+              {entries.length} {entries.length === 1 ? 'herinnering' : 'herinneringen'}
+            </p>
+          </div>
+          <button
+            onClick={() => setShowVerslag(true)}
+            className="min-h-tap flex items-center rounded-2xl bg-orange-500 text-white font-black px-4 text-sm shadow-md active:scale-95 transition-transform"
+          >
+            📜 Reisverslag
+          </button>
         </div>
 
         {entries.length === 0 ? (
@@ -218,6 +228,8 @@ export default function DagboekTab({ activeStopId }) {
           </div>
         )}
       </div>
+
+      {showVerslag && <ReisverslagView onClose={() => setShowVerslag(false)} />}
     </div>
   )
 }

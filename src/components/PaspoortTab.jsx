@@ -205,14 +205,19 @@ function QuizScreen({ stop, questions, onPass, onBack }) {
       </div>
 
       <div className="flex-1 flex flex-col items-center justify-center px-8 gap-5">
-        {quizImgSrc(q.image) && (
+        {quizImgSrc(q.image) ? (
           <img
             src={quizImgSrc(q.image)}
             alt=""
             className="rounded-2xl object-cover shadow-md"
             style={{ maxHeight: '180px', maxWidth: '100%' }}
           />
-        )}
+        ) : q.emoji ? (
+          // A little emoji scene where a photo would go — visual without needing images
+          <div className="rounded-3xl bg-white/70 shadow-md px-10 py-4 flex items-center justify-center">
+            <span className="text-7xl md:text-8xl leading-none">{q.emoji}</span>
+          </div>
+        ) : null}
         <p className="text-2xl font-black text-center leading-tight" style={{ color: fg(stop.countryCode) }}>
           {q.q}
         </p>

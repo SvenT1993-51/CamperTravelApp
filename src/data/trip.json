@@ -48,6 +48,7 @@
       "passportQuiz": [
         {
           "q": "Hoe zien de straatjes van Karlsruhe eruit van bovenaf?",
+          "emoji": "🏙️🔍",
           "options": [
             { "label": "Als een grote waaier", "correct": true },
             { "label": "Als een doolhof", "correct": false },
@@ -56,6 +57,7 @@
         },
         {
           "q": "Wat staat er midden op het marktplein?",
+          "emoji": "🏙️❓",
           "image": "karlsruhe/pyramide.jpg",
           "options": [
             { "label": "Een rode piramide", "correct": true },
@@ -65,6 +67,7 @@
         },
         {
           "q": "Welke dieren kun je in de dierentuin zien?",
+          "emoji": "🦁🐒",
           "options": [
             { "label": "IJsberen en olifanten", "correct": true },
             { "label": "Dino's", "correct": false },
@@ -112,6 +115,7 @@
       "passportQuiz": [
         {
           "q": "Hoeveel landen liggen er rond de Bodensee?",
+          "emoji": "🏞️",
           "options": [
             { "label": "Drie", "correct": true },
             { "label": "Twee", "correct": false },
@@ -120,6 +124,7 @@
         },
         {
           "q": "Wat doen de mensen met het schone water van de Bodensee?",
+          "emoji": "💧✨",
           "options": [
             { "label": "Ze drinken het", "correct": true },
             { "label": "Ze maken er zout van", "correct": false },
@@ -183,6 +188,7 @@
         },
         {
           "q": "Wat ligt er in de zomer boven op de top?",
+          "emoji": "🏔️☀️",
           "options": [
             { "label": "Sneeuw", "correct": true },
             { "label": "Zand", "correct": false },
@@ -191,6 +197,7 @@
         },
         {
           "q": "Hoe kom je boven op de Zugspitze?",
+          "emoji": "🏔️⬆️",
           "options": [
             { "label": "Met de kabelbaan", "correct": true },
             { "label": "Met de boot", "correct": false },
@@ -238,6 +245,7 @@
       "passportQuiz": [
         {
           "q": "Hoe is het water van de rivier de Isar?",
+          "emoji": "🏞️",
           "options": [
             { "label": "IJskoud en blauwgroen", "correct": true },
             { "label": "Warm en bruin", "correct": false },
@@ -246,6 +254,7 @@
         },
         {
           "q": "Waarom dragen de koeien hier een bel?",
+          "emoji": "🐄🔔",
           "options": [
             { "label": "Zodat je ze van ver hoort", "correct": true },
             { "label": "Alleen voor de sier", "correct": false },
@@ -301,6 +310,7 @@
       "passportQuiz": [
         {
           "q": "Waar is Inzell in de winter bekend om?",
+          "emoji": "❄️🏟️",
           "options": [
             { "label": "Schaatsen", "correct": true },
             { "label": "Surfen", "correct": false },
@@ -317,6 +327,7 @@
         },
         {
           "q": "Wat fladdert er rond in de bloemenweide?",
+          "emoji": "🌼🌸",
           "options": [
             { "label": "Vlinders", "correct": true },
             { "label": "Pinguïns", "correct": false },
@@ -364,6 +375,7 @@
       "passportQuiz": [
         {
           "q": "Hoe heet de hoogste berg van Oostenrijk?",
+          "emoji": "🏔️",
           "options": [
             { "label": "De Grossglockner", "correct": true },
             { "label": "De Zugspitze", "correct": false },
@@ -380,6 +392,7 @@
         },
         {
           "q": "Welk dier klimt hier op de steile rotsen?",
+          "emoji": "🏔️🪨",
           "options": [
             { "label": "De gems", "correct": true },
             { "label": "De dolfijn", "correct": false },
@@ -427,6 +440,7 @@
       "passportQuiz": [
         {
           "q": "Welke taal praten de mensen hier, terwijl het in Italië ligt?",
+          "emoji": "💬❓",
           "options": [
             { "label": "Duits", "correct": true },
             { "label": "Frans", "correct": false },
@@ -498,6 +512,7 @@
         },
         {
           "q": "Waarom zie je zoveel surfers op het Gardameer?",
+          "emoji": "🏄🌊",
           "options": [
             { "label": "Er waait bijna altijd wind", "correct": true },
             { "label": "Het water is heel warm", "correct": false },
@@ -506,6 +521,7 @@
         },
         {
           "q": "Welke bijzondere bomen staan er aan dit meer?",
+          "emoji": "🌊☀️",
           "options": [
             { "label": "Palmbomen", "correct": true },
             { "label": "Kerstbomen", "correct": false },
@@ -553,6 +569,7 @@
       "passportQuiz": [
         {
           "q": "Hoe heten de koele grotten in de rotsen?",
+          "emoji": "🪨🕳️",
           "options": [
             { "label": "Crotti", "correct": true },
             { "label": "Iglo's", "correct": false },
@@ -616,6 +633,7 @@
       "passportQuiz": [
         {
           "q": "Waarmee betaal je in Zwitserland?",
+          "emoji": "💰❓",
           "options": [
             { "label": "Met Zwitserse franken", "correct": true },
             { "label": "Met euro's", "correct": false },
@@ -624,6 +642,7 @@
         },
         {
           "q": "Wat is er bijzonder aan de kabelbaan naar Stoos?",
+          "emoji": "🚠",
           "options": [
             { "label": "Het is de steilste ter wereld", "correct": true },
             { "label": "Het is de langzaamste ter wereld", "correct": false },
@@ -687,6 +706,7 @@
         },
         {
           "q": "Hoe heet het deel van de stad dat aan het water ligt?",
+          "emoji": "🏘️💧",
           "options": [
             { "label": "Klein Venetië", "correct": true },
             { "label": "Klein Parijs", "correct": false },
@@ -695,6 +715,7 @@
         },
         {
           "q": "Welke vogels bouwen hier nesten op de daken?",
+          "emoji": "🏠🪹",
           "options": [
             { "label": "Ooievaars", "correct": true },
             { "label": "Pinguïns", "correct": false },
@@ -742,6 +763,7 @@
       "passportQuiz": [
         {
           "q": "Hoe oud is Trier ongeveer?",
+          "emoji": "🏛️",
           "options": [
             { "label": "Meer dan 2000 jaar", "correct": true },
             { "label": "100 jaar", "correct": false },

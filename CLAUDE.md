@@ -21,6 +21,7 @@ One shared tablet, used by all the kids together.
 - Marker positions for the SVG map: `src/data/map-markers.json`.
 - 12 stops in travel order: Karlsruhe, Oberteuringen/Bodensee, Zugspitze/Eibsee, Lenggries, Inzell, Kals am Grossglockner, Rasun-Anterselva (Italy, German-speaking), Limone sul Garda, Chiavenna, Morschach (Switzerland — Swiss francs!), Colmar (France, Germanic), Trier. Home = Sint-Oedenrode (NL).
 - **Quiz photos** go under `src/assets/<stop-id>/` and are referenced by a question's `image` field. Bundling + offline caching are wired; the picture quiz falls back to text-only when an image is absent. **This is the main open content gap** — only one image is referenced today, so quizzes are effectively text-only until real photos are added.
+- A quiz question may carry an optional `emoji` field (1–3 emoji): shown large as a scene where a photo would go, so the quiz is visual without images. A resolvable `image` takes precedence. The emoji must illustrate the setting and never depict the correct answer.
 
 ## App structure
 A `WelcomeScreen` gate (kids enter their names) precedes the main shell. The shell is four tabs (`BottomNav`):
@@ -29,11 +30,13 @@ A `WelcomeScreen` gate (kids enter their names) precedes the main shell. The she
 - **Paspoort** (`PaspoortTab`) — 12 stamp cards. Locked until a stop is visited; a visited stop shows a **⭐ Quiz!** badge. Passing the 3-question picture quiz stamps it (`PassportStamp`) and earns **1–3 stars** by first-try correctness (see below). Stamped cards reopen as a read-only detail (`StopCard`) with a "Quiz opnieuw" option.
 - **Trofeeën** (`TrofeeenTab`) — a trophy room grouped by category (Stempels, Speurder, Woordjes, Dagboek & reis). Trophies unlock from all progress sources; locked ones show how to earn them. Newly-earned trophies pop with confetti + a NIEUW! badge. A 👑 Reiskampioen crowns earning every other trophy.
 - **Dagboek** (`DagboekTab`) — parent types a short note (emoji picker inserts at the cursor); renders as a date-grouped timeline. Entries are deletable.
+  - **Reisverslag** (`ReisverslagView`) — a "📜 Reisverslag" button opens a print-friendly keepsake: header + date range, "Reis in cijfers" stats, earned stamps (with quiz stars), the full diary oldest-first, and an earned-trophy/Reiskampioen footer. Sharing is `window.print()` → save as PDF → AirDrop/WhatsApp. Portalled to `<body>`; `@media print` in `index.css` hides `#root` so only the report prints. Reuses `lib/distance.js` (km) and `lib/trophies.js` (trophy count).
 
 ## Mini-games & reward systems
 - **Woordjes-spel** (`WoordjesSpel`) — a full-screen memory-match game built from a stop's `phrases` (Dutch ↔ local word). Fewer tries = more stars. Opened from the StopCard.
 - **Speurtocht** (spot-challenge) — tick off `spotChallenge` items on the StopCard as you spot them for real; completing one earns the "Speurder!" badge.
 - **Picture-quiz stars** — 3/3 first try = ⭐⭐⭐, 2/3 = ⭐⭐, else ⭐. Kids always pass eventually (wrong answers retry the same question); the score reflects first-try answers only. Replays keep the best score.
+- **Kenteken-bingo** (`KentekenBingo`) — a bingo game for driving days, opened from a button on the Kaart tab. A 3×3 card (the 6 trip countries + 3 random rare, real EU plate codes); tap a country when you spot its plate. A full row, column or diagonal = BINGO!, the whole card = volle kaart, both with Confetti. Persists to `ce_kenteken`; "Nieuwe kaart" reshuffles via a two-step inline confirm. Feeds the "Onderweg" trophies (Eerste spot / Bingo! / Zes landen).
 - **Confetti** (`Confetti`) — shared celebration effect used across games, quiz, and trophies.
 
 ## localStorage keys
@@ -45,6 +48,7 @@ A `WelcomeScreen` gate (kids enter their names) precedes the main shell. The she
 - `ce_wordstars` — `{ [stopId]: 1|2|3 }` best woordjes-spel score
 - `ce_spotted` — `{ [stopId]: number[] }` ticked spot-challenge indices
 - `ce_diary` — `[{id, date, text, stopId}]`
+- `ce_kenteken` — Kenteken-bingo state `{ card, marked, spottedEver, everBingo }` (card = 9 country codes; spottedEver + everBingo persist across new cards for trophies)
 - `ce_trophies_seen` — trophy ids already celebrated (drives the NIEUW! pop)
 
 ## Reliability / PWA
