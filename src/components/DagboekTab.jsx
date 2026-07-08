@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
 import tripData from '../data/trip.json'
+import ReisverslagView from './ReisverslagView.jsx'
 
 const LS_DIARY = 'ce_diary'
 
@@ -47,9 +48,9 @@ function extractIcon(text) {
 function DiaryEntry({ entry, onDelete }) {
   const label = stopLabel(entry.stopId)
   return (
-    <div className="flex gap-3 bg-white rounded-2xl shadow-sm px-4 py-3 relative group">
+    <div className="flex gap-3 bg-white rounded-2xl shadow-sm px-4 py-3 relative">
       <span className="text-4xl leading-none flex-shrink-0 mt-0.5">{extractIcon(entry.text)}</span>
-      <div className="flex-1 min-w-0">
+      <div className="flex-1 min-w-0 pr-9">
         {label && (
           <div className="flex items-center gap-1 mb-1">
             <span className="text-xs">📍</span>
@@ -58,9 +59,10 @@ function DiaryEntry({ entry, onDelete }) {
         )}
         <p className="text-base leading-snug text-gray-800 whitespace-pre-wrap break-words">{entry.text}</p>
       </div>
+      {/* Always visible + a proper tap target — hover doesn't exist on a tablet */}
       <button
         onClick={() => onDelete(entry.id)}
-        className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center text-gray-300 hover:text-red-400 text-lg leading-none opacity-0 group-hover:opacity-100 transition-opacity active:scale-90"
+        className="absolute top-1.5 right-1.5 w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-400 text-2xl leading-none active:scale-90 active:bg-red-100 active:text-red-500 transition-transform"
         aria-label="Verwijder"
       >
         ×
@@ -74,6 +76,7 @@ export default function DagboekTab({ activeStopId }) {
   const [entries, setEntries] = useState(loadEntries)
   const [text,    setText]    = useState('')
   const [shake,   setShake]   = useState(false)
+  const [showVerslag, setShowVerslag] = useState(false)
   const textareaRef = useRef(null)
 
   const location = stopLabel(activeStopId)
@@ -187,11 +190,19 @@ export default function DagboekTab({ activeStopId }) {
 
       {/* ── Right: timeline (65%) ── */}
       <div className="flex-1 flex flex-col overflow-hidden bg-brand-cream">
-        <div className="flex-shrink-0 px-6 pt-4 pb-2">
-          <h2 className="text-xl font-black text-amber-900">📖 Dagboek</h2>
-          <p className="text-sm text-amber-700">
-            {entries.length} {entries.length === 1 ? 'herinnering' : 'herinneringen'}
-          </p>
+        <div className="flex-shrink-0 px-6 pt-4 pb-2 flex items-start justify-between gap-3">
+          <div>
+            <h2 className="text-xl font-black text-amber-900">📖 Dagboek</h2>
+            <p className="text-sm text-amber-700">
+              {entries.length} {entries.length === 1 ? 'herinnering' : 'herinneringen'}
+            </p>
+          </div>
+          <button
+            onClick={() => setShowVerslag(true)}
+            className="min-h-tap flex items-center rounded-2xl bg-orange-500 text-white font-black px-4 text-sm shadow-md active:scale-95 transition-transform"
+          >
+            📜 Reisverslag
+          </button>
         </div>
 
         {entries.length === 0 ? (
@@ -217,6 +228,8 @@ export default function DagboekTab({ activeStopId }) {
           </div>
         )}
       </div>
+
+      {showVerslag && <ReisverslagView onClose={() => setShowVerslag(false)} />}
     </div>
   )
 }

@@ -32,3 +32,22 @@ button, [role="button"] {
   50%      { transform: translateY(-2.5px); }
 }
 .van-bob { animation: vanBob 1.6s ease-in-out infinite; }
+
+/* ── Reisverslag: when printing, only the report renders ──
+   The report is portalled to <body>, so hiding #root removes all app chrome
+   while the report (given print:static/h-auto/overflow-visible on screen) flows
+   as a normal multi-page document. */
+@media print {
+  html, body {
+    height: auto;
+    overflow: visible;
+    background: #fff;
+  }
+  #root { display: none !important; }
+  /* Keep stamp & accent colours through the print pipeline */
+  .reisverslag-print,
+  .reisverslag-print * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

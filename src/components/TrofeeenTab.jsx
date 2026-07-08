@@ -1,50 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import tripData from '../data/trip.json'
 import Confetti from './Confetti.jsx'
+import { buildTrophies } from '../lib/trophies.js'
 
 const LS_SPOTTED   = 'ce_spotted'
 const LS_DIARY     = 'ce_diary'
 const LS_WORDSTARS = 'ce_wordstars'
+const LS_QUIZSTARS = 'ce_quizstars'
+const LS_KENTEKEN  = 'ce_kenteken'
 const LS_SEEN      = 'ce_trophies_seen'
+
+// The 6 trip countries (incl. home NL), by their app countryCode / plate key
+const TRIP_PLATE_CODES = ['NL', 'DE', 'AT', 'IT', 'CH', 'FR']
 
 function load(key, fallback) {
   try { return JSON.parse(localStorage.getItem(key)) ?? fallback } catch { return fallback }
 }
 
-const CATEGORIES = ['Stempels', 'Speurder', 'Woordjes', 'Dagboek & reis']
-
-// Build the full trophy list from the player's progress. Each trophy is simply
-// earned or not; the room stays motivating because locked ones show how to get them.
-function buildTrophies({ stampCount, fullySpotted, playedCount, threeStarCount, totalStars, diaryCount, visitedCount, countryCount, totalStops }) {
-  const base = [
-    { id: 'stamp1',    cat: 'Stempels',       icon: '🥇', title: 'Eerste stempel',  desc: 'Verdien je eerste stempel',     earned: stampCount >= 1 },
-    { id: 'stamp6',    cat: 'Stempels',       icon: '🎖️', title: 'Op de helft',     desc: '6 stempels verdiend',           earned: stampCount >= 6 },
-    { id: 'stamp12',   cat: 'Stempels',       icon: '🏆', title: 'Alle stempels',   desc: `Alle ${totalStops} stempels verdiend`, earned: stampCount >= totalStops },
-
-    { id: 'spot1',     cat: 'Speurder',       icon: '🔍', title: 'Speurneus',       desc: 'Vind alles op één plek',        earned: fullySpotted >= 1 },
-    { id: 'spot5',     cat: 'Speurder',       icon: '🕵️', title: 'Scherpe ogen',    desc: 'Vind alles op 5 plekken',       earned: fullySpotted >= 5 },
-    { id: 'spot12',    cat: 'Speurder',       icon: '🧭', title: 'Meester-speurder', desc: 'Vind alles op elke plek',      earned: fullySpotted >= totalStops },
-
-    { id: 'word1',     cat: 'Woordjes',       icon: '🃏', title: 'Woordspeler',     desc: 'Speel je eerste woordjes-spel', earned: playedCount >= 1 },
-    { id: 'word3star', cat: 'Woordjes',       icon: '⭐', title: 'Drie sterren!',    desc: 'Haal 3 sterren in een spel',    earned: threeStarCount >= 1 },
-    { id: 'word6',     cat: 'Woordjes',       icon: '💬', title: 'Taalknobbel',     desc: 'Speel op 6 plekken',            earned: playedCount >= 6 },
-    { id: 'word12',    cat: 'Woordjes',       icon: '📚', title: 'Woordmeester',    desc: 'Speel op alle plekken',         earned: playedCount >= totalStops },
-    { id: 'starrain',  cat: 'Woordjes',       icon: '🌟', title: 'Sterrenregen',    desc: 'Verzamel 24 sterren',           earned: totalStars >= 24 },
-
-    { id: 'diary1',    cat: 'Dagboek & reis', icon: '✏️', title: 'Eerste verhaal',  desc: 'Schrijf je eerste herinnering', earned: diaryCount >= 1 },
-    { id: 'diary10',   cat: 'Dagboek & reis', icon: '📖', title: 'Schrijver',       desc: 'Schrijf 10 herinneringen',      earned: diaryCount >= 10 },
-    { id: 'trip1',     cat: 'Dagboek & reis', icon: '🚐', title: 'Op reis!',        desc: 'Bezoek je eerste plek',         earned: visitedCount >= 1 },
-    { id: 'trip6',     cat: 'Dagboek & reis', icon: '🛣️', title: 'Halverwege',      desc: 'Bezoek 6 plekken',              earned: visitedCount >= 6 },
-    { id: 'countries', cat: 'Dagboek & reis', icon: '🌍', title: 'Wereldreiziger',  desc: 'Bezoek alle 5 landen',          earned: countryCount >= 5 },
-    { id: 'trip12',    cat: 'Dagboek & reis', icon: '🏁', title: 'Hele reis',       desc: 'Bezoek alle plekken',           earned: visitedCount >= totalStops },
-  ]
-  // The crown: earned once every other trophy is in the bag
-  base.push({
-    id: 'champion', cat: 'Dagboek & reis', icon: '👑', title: 'Reiskampioen',
-    desc: 'Verdien alle andere trofeeën', earned: base.every(t => t.earned),
-  })
-  return base
-}
+const CATEGORIES = ['Stempels', 'Speurder', 'Woordjes', 'Dagboek & reis', 'Onderweg']
 
 // ── One trophy card ───────────────────────────────────────────────────────────
 function TrophyCard({ t, isNew }) {
@@ -88,6 +61,8 @@ export default function TrofeeenTab({ stampedStops, visitedStopIds }) {
   const spotted   = load(LS_SPOTTED, {})
   const diary     = load(LS_DIARY, [])
   const wordstars = load(LS_WORDSTARS, {})
+  const quizstars = load(LS_QUIZSTARS, {})
+  const kenteken  = load(LS_KENTEKEN, {})
 
   const stampCount   = stampedStops.length
   const fullySpotted = stops.filter(s => {
@@ -97,15 +72,22 @@ export default function TrofeeenTab({ stampedStops, visitedStopIds }) {
   const playedCount    = stops.filter(s => (wordstars[s.id] ?? 0) >= 1).length
   const threeStarCount = stops.filter(s => (wordstars[s.id] ?? 0) >= 3).length
   const totalStars     = stops.reduce((sum, s) => sum + (wordstars[s.id] ?? 0), 0)
+  const quizThreeStar  = stops.filter(s => (quizstars[s.id] ?? 0) >= 3).length
+  const totalQuizStars = stops.reduce((sum, s) => sum + (quizstars[s.id] ?? 0), 0)
   const diaryCount     = diary.length
   const visitedCount   = visitedStopIds.length
   const countryCount   = new Set(
     stops.filter(s => visitedStopIds.includes(s.id)).map(s => s.countryCode),
   ).size
+  const kSpotted = Array.isArray(kenteken.spottedEver) ? kenteken.spottedEver : []
 
   const trophies = buildTrophies({
     stampCount, fullySpotted, playedCount, threeStarCount, totalStars,
+    quizThreeStar, totalQuizStars,
     diaryCount, visitedCount, countryCount, totalStops: stops.length,
+    kentekenFirst: kSpotted.length >= 1,
+    kentekenBingo: !!kenteken.everBingo,
+    kentekenAllTrip: TRIP_PLATE_CODES.every(c => kSpotted.includes(c)),
   })
 
   const earnedTrophies = trophies.filter(t => t.earned)

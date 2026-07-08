@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import BackupCorner from './BackupCorner.jsx'
 
 const MAX_NAMES = 6
 
@@ -130,6 +131,8 @@ export default function WelcomeScreen({ names, onSaveNames, onEnter }) {
             </button>
           </div>
         )}
+
+        <BackupCorner />
       </div>
     </div>
   )
